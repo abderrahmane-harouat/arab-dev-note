@@ -160,8 +160,15 @@ export default defineNuxtConfig({
     <ContentDoc />
   </main>
 </template>
-``` 
+```
 
 بهذا نستطيع الولوج لأي صفحة انشأناها في داخل content عن طريق **localhost:3000/pagename**
 
+## إنشاء الروابط nuxtlink
 
+```
+<template>
+  <NuxtLink to="/">Home page</NuxtLink>
+  <NuxtLink to="/almal">إدارة المال</NuxtLink>
+</template>
+```

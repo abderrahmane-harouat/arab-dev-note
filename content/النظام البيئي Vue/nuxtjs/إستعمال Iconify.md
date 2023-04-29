@@ -27,3 +27,9 @@ modules: [
 ```
 <Icon name="mdi:youtube" size="96" color="#15CA82"  />
 ```
+
+نبحث عن الأيقونات في هذا الموقع
+
+```
+https://icones.js.org/
+```
