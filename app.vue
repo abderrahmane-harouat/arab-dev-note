@@ -3,9 +3,17 @@
 </template>
 
 <style>
-  html {
+@import url('https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink:wght@400;700&display=swap');
+
+.aref-ruqaa-ink-regular {
+  font-family: "Aref Ruqaa Ink", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+html {
     height: 100%;
-    background: url(/background.jpg) repeat center center fixed; 
+    background: url(/background.jpg) repeat center center fixed;
 }
 /* width */
 ::-webkit-scrollbar {

@@ -1,6 +1,6 @@
 ---
 title: "إستعمالات git"
-date: "2 ربيع الثاني 1444 ﻬ"
+updated: "2 ربيع الثاني 1444 ﻬ"
 heroImage: "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_git2.svg"
 ---
 

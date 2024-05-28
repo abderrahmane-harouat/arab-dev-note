@@ -1,3 +1,10 @@
+---
+title: "إستعمال viteJs"
+updated: "20 ذو القعدة 1445 ﻬ"
+heroImage: "https://raw.githubusercontent.com/bestofjs/bestofjs/master/apps/bestofjs-nextjs/public/logos/vite.svg"
+---
+
+# بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ
 
 ## اضافة TailwindCss ل vite
 
@@ -5,10 +12,11 @@
 pnpm add tailwindcss postcss autoprefixer -D
 npx tailwindcss init -p
 ```
+
 هنا يجب تعديل المسارات بهذه الطريقة في ملف `tailwind.config.cjs`
 
 ```
-/** @type {import('tailwindcss').Config} */ 
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./index.html",
@@ -35,15 +43,14 @@ module.exports = {
 import './style.css'
 ```
 
-
-
-
 ### اضافة daisyui مع tailwind
 
 ```
 yarn add daisyui
 ```
+
 ثم نعدل `tailwind.config.js`
+
 ```
 module.exports = {
   //...
@@ -54,7 +61,6 @@ module.exports = {
 ### تحويل الموقع الى العربي RTL
 
 نذهب الى `index.html` و نظيف `dir="rtl"` الى `<body>`
-
 
 ### اضافة font
 
@@ -92,5 +98,5 @@ module.exports = {
 }
 ```
 
-ولا تنسى تحميل و اضافة الفونت التي تريدها `Tajawal-Regular.ttf` في `public/fonts` 
+ولا تنسى تحميل و اضافة الفونت التي تريدها `Tajawal-Regular.ttf` في `public/fonts`
 و اخيرا تستطيع اضافة كلاس `font-tajawal`

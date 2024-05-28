@@ -1,4 +1,10 @@
+---
+title: "أمثلة Deno"
+updated: "20 ذو القعدة 1445 ﻬ"
+heroImage: "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_denoify.svg"
+---
 
+# بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ
 
 ## ارسال طلب http الى موقع
 
@@ -13,7 +19,7 @@ const body = new Uint8Array(await res.arrayBuffer());
 await Deno.stdout.write(body);
 ```
 
-بعد ذلك نطبق الامر التالي مع إضافة `--allow-net` قبل إسم الملف 
+بعد ذلك نطبق الامر التالي مع إضافة `--allow-net` قبل إسم الملف
 
 ```
 deno run --allow-net first_steps.ts https://abdurahman-ghazi.github.io/
@@ -68,7 +74,7 @@ console.log("Listening on http://localhost:8000");
 serve(handler);
 ```
 
-بعد ذلك نشغل الخادم 
+بعد ذلك نشغل الخادم
 
 ```
 deno run --allow-net --allow-write http_server.ts
@@ -78,4 +84,19 @@ deno run --allow-net --allow-write http_server.ts
 
 ```
 curl http://localhost:8000
+```
+
+## إنشاء تطبيق عن طريق oak و deno و vite
+
+أولا نكتب الأمر
+
+```
+deno run --unstable -A npm:create-vite-extra
+```
+
+بعد ذلك نختار اسم للمشروع ثم يمكننا إختيار deno-vue ثم
+
+```
+cd project_name
+deno task --unstable dev
 ```

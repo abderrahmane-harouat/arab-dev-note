@@ -1,3 +1,9 @@
+---
+title: "أساسيات javascript"
+updated: "20 ذو القعدة 1445 ﻬ"
+heroImage: "https://raw.githubusercontent.com/uiwjs/file-icons/master/icon/javascript.svg"
+---
+
 # بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ
 
 ## مقدمة في المتغيرات و الثوابت
@@ -78,7 +84,6 @@ const weekDays = 7, dateOfBirth = "10/02/1990"
 
 نلاحظ أننا استخدمنا const مرة واحدة لتعريف ثابتان تعرفنا في هذا الدرس على الثوابت ونقطة الاختلاف بينها وبين المتغيرات وتعرفنا على طريقة تعريف الثابت وإسناد قيمة له وتوظيفه في البرنامج، وعلى طريقة تعريف أكثر من ثابت في سطر واحد.
 
-
 ## التعليق في جافاسكريبت
 
 في حال قمنا بإضافة تعليقات فإنه سيتم تجاهل هذه التعليقات عندما نقوم بتنفيذ البرنامج
@@ -87,8 +92,8 @@ const weekDays = 7, dateOfBirth = "10/02/1990"
 single line comment
 // this is comment
 
-multiline comment 
-/* this is 
+multiline comment
+/* this is
    comment */
 ```
 
@@ -106,7 +111,6 @@ multiline comment
 
 **استخدام typeof لمعرفة نوع البيانات**
 لمعرفة نوع القيمة المسندة للمتغيّر نستخدم typeof متبوعة باسم المتغيّر نلاحظ المثال التالي:
-
 
 ```
 let name = 'Nasser';
@@ -144,10 +148,9 @@ JavaScript
 
 إدراج Expression داخل Template Strings
 
-
 ```
 let price = 5.75;
-let message = `The price is ${price}`; 
+let message = `The price is ${price}`;
 console.log(message); //The price is 5.75
 
 
@@ -253,7 +256,7 @@ console.log("Welcome to \"JavaScript\"");
 ### إضافة علامة Backslash
 
 ```
-console.log('The \\ character is called backslash.'); 
+console.log('The \\ character is called backslash.');
 //The \ character is called backslash.
 ```
 
@@ -521,7 +524,7 @@ console.log(Array.isArray(colors)) //true
 const values = [[1,2,3], true, 'javascript']
 ```
 
-للوصول إلى العدد 3 نفعل هكذا 
+للوصول إلى العدد 3 نفعل هكذا
 
 ```
 const values = [[1,2,3], true, 'javascript']
@@ -563,7 +566,7 @@ if (age < 12){
 console.log("Sorry, you are not old enough to play this game");
 }
 else{
-console.log("Welcome to the game");  
+console.log("Welcome to the game");
 }
 ```
 
@@ -596,7 +599,7 @@ switch(mycolor){
     case 3:
         console.log(colors[2]);
         break;
-    default: 
+    default:
         console.log('white')
         break;
 } //white
@@ -625,7 +628,7 @@ switch(mycolor){
     case 6:
         console.log('black');
         break;
-    default: 
+    default:
         console.log('white')
         break;
 } //black
@@ -695,7 +698,7 @@ do{
 
 ### الفرق بين while و Do while
 
-إذا لم يتحقق الشرط في while فلن يعمل الكود ولا مرة .. أما إذا إستخدمنا Do While و لم يتحقق الشرط فسيعمل الكود مرة 
+إذا لم يتحقق الشرط في while فلن يعمل الكود ولا مرة .. أما إذا إستخدمنا Do While و لم يتحقق الشرط فسيعمل الكود مرة
 
 ### نظرة على استخدام continue و break
 
@@ -733,7 +736,7 @@ for(let index = 1; index <= 10; index++){
 Stop
 ```
 
-### التكرار عن طريق for of 
+### التكرار عن طريق for of
 
 ```
 let colors = ['red', 'white', 'green']
@@ -763,7 +766,7 @@ m
 
 ## الدوال functions
 
-**طريقة كتابة الدالة** : نكتب function ثم  اسم الدالة مع إضافة () قوسين ثم نفتح الدالة ب { و ندخل الاوامر ... ثم نغلقها عند الإنتهاء }
+**طريقة كتابة الدالة** : نكتب function ثم اسم الدالة مع إضافة () قوسين ثم نفتح الدالة ب { و ندخل الاوامر ... ثم نغلقها عند الإنتهاء }
 
 لن يعمل اي شيئ داخل الدالة حتى تتم مناداتها في الاسفل كما يوضح المثال التالي
 
@@ -779,7 +782,7 @@ salam()
 ```javascript
 function salam():
 	print("السلام عليكم")
-	
+
 func_name()
 func_name()
 ```
@@ -788,14 +791,14 @@ func_name()
 
 يمكننا تعديل الدالة عند استدعاءها عن طريق parameter مثال function salam(parameter)
 
-```
+````
 ```javascript
 function salam(name){
 	console.log("salam alikom ya", name)
-}	
+}
 salam("ahmad")
 salam("hamza")
-```
+````
 
 يمكن إضافة عدة parameters "مدخلات"
 
@@ -809,10 +812,9 @@ greeting("hamza", 25)
 
 ### إرجاع قيمة من الدالة Return
 
-في الأمثلة السابقة لم نكن نرجع البيانات. ما كنا نفعله هو الطباعة عن طريق console.log, هنا  return تقوم بارجع البيانات لنفعل بها ما نشاء لاحقا 
+في الأمثلة السابقة لم نكن نرجع البيانات. ما كنا نفعله هو الطباعة عن طريق console.log, هنا return تقوم بارجع البيانات لنفعل بها ما نشاء لاحقا
 
-في هذا المثال طبعا لن يحدث شيء قمنا بارجاع النص فقط 
-
+في هذا المثال طبعا لن يحدث شيء قمنا بارجاع النص فقط
 
 ```javascript
 function greeting(){
@@ -884,7 +886,7 @@ function printNumbers(to){
 printNumbers(add(1,2))
 ```
 
-### إنهاء  الدالة عن طريق return
+### إنهاء الدالة عن طريق return
 
 في هذا المثال for loop لن تعمل لأننا قمنا بإنهاء الدالة أو إغلاقها
 
@@ -918,32 +920,40 @@ printNumbers(5) // prints the numbers
 ## شرح local storage
 
 لإضافة القيم و مفاتيحها في local storage لدينا 3 طرق
+
 ```
 window.localStorage.setItem("color", "#F00");
 window.localStorage.fontWeight = "bold";
 window.localStorage["fontSize"] = "20px";
 ```
+
 لإستدعاء القيم لدينا 3 طرق أيضا فقط نقوم بطلب المفتاح من local storage
+
 ```
 window.localStorage.getItem("color");
 window.localStorage.color;
 window.localStorage["color"];
 ```
+
 الآن لحذف قيمة في local storage سهل جدا
+
 ```
 window.localStorage.removeItem("color");
 ```
-و لحذف كل القيم 
+
+و لحذف كل القيم
+
 ```
 window.localStorage.clear();
 ```
+
 ولمعرفة ما يوجد في المفتاح رقم 0 على سبيل المثال
+
 ```
 window.localStorage.key(0)
 ```
 
-## المصادر 
+## المصادر
 
 - قناة أسامة الزيرو
 - منصة سطر
-

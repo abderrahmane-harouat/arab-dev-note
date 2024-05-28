@@ -1,3 +1,11 @@
+---
+title: "إستعمال Next Js"
+updated: "20 ذو القعدة 1445 ﻬ"
+heroImage: "https://raw.githubusercontent.com/bestofjs/bestofjs/master/apps/bestofjs-nextjs/public/logos/nextjs.dark.svg"
+---
+
+# بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ
+
 ## انشاء موقع الكتروني ب nextjs + tailwind
 
 ```
@@ -6,18 +14,20 @@ cd chiraz
 yarn dev
 ```
 
+### تضمين محتوى تويتر
 
-### تضمين محتوى تويتر 
 ```
 yarn add react-twitter-embed
 ```
-ثم نضيف هذا 
+
+ثم نضيف هذا
+
 ```
  <TwitterTimelineEmbed
   sourceType="profile"
   screenName="abdurahmn_ghazi"
   options={{height: 1000}}
-/> 
+/>
 ```
 
 ### اضافة font
@@ -53,16 +63,17 @@ module.exports = {
 }
 ```
 
-ولا تنسى تحميل و اضافة الفونت التي تريدها `Tajawal-Regular.ttf` في `public/fonts` 
+ولا تنسى تحميل و اضافة الفونت التي تريدها `Tajawal-Regular.ttf` في `public/fonts`
 و اخيرا تستطيع اضافة كلاس `font-tajawal`
 
-## اضافة  nextjs Image 
+## اضافة nextjs Image
 
-اولا نقوم ب import 
+اولا نقوم ب import
 
 ```
 import Image from 'next/image'
 ```
+
 ثم بعد ذلك نظيف الصورة مع بعض التعديلات
 
 ```
@@ -74,7 +85,8 @@ import Image from 'next/image'
 	/>
 </div>
 ```
-اذا اردنا ان تكون الصورة اول ما يحمل في الصفحة يجب اضافة priority بهذا الشكل 
+
+اذا اردنا ان تكون الصورة اول ما يحمل في الصفحة يجب اضافة priority بهذا الشكل
 
 ```
 <Image
@@ -83,7 +95,7 @@ import Image from 'next/image'
 />
 ```
 
-نستطيع اضافة width و height ولكن هذا سيجعل الصورة غير متجاوبة  و قبيحة 
+نستطيع اضافة width و height ولكن هذا سيجعل الصورة غير متجاوبة و قبيحة
 
 ```
 <Image
@@ -100,6 +112,7 @@ import Image from 'next/image'
 ```
 yarn add @heroicons/react
 ```
+
 ثم نظيفها
 
 ```
@@ -134,7 +147,8 @@ const metadata = {
 
 export default metadata;
 ```
-بعد ذلك نذهب الى index.js على سبيل المثال و نكتب هكذا 
+
+بعد ذلك نذهب الى index.js على سبيل المثال و نكتب هكذا
 
 ```
 import metadata from '../data/metadata'

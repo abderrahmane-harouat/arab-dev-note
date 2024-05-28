@@ -1,3 +1,11 @@
+---
+title: "إستعمال React Native"
+updated: "20 ذو القعدة 1445 ﻬ"
+heroImage: "https://reactnative.dev/img/header_logo.svg"
+---
+
+# بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ
+
 ## انشاء تطبيق جوال ب React Native
 
 ```
@@ -8,14 +16,14 @@ expo start
 
 - ثم قم بتحميل expo go من متجر google play store
 
-### استعمال TailwindCss 
+### استعمال TailwindCss
 
 ```
 yarn add tailwindcss-react-native
 yarn add --dev tailwindcss
 ```
 
-بعدها أنشئ `tailwind.config.js` 
+بعدها أنشئ `tailwind.config.js`
 
 ```
 // tailwind.config.js
@@ -27,7 +35,6 @@ module.exports = {
   plugins: [],
 }
 ```
-
 
 اضافة هذا السطر داخل return في `babel.config.js`
 
@@ -44,10 +51,10 @@ import { TailwindProvider } from 'tailwindcss-react-native';
 اضافة `<TailwindProvider>` بهذا الشكل
 
 ```
-+ <TailwindProvider>  
-<View style={styles.container}>  
-... 
-</View>  
++ <TailwindProvider>
+<View style={styles.container}>
+...
+</View>
 + </TailwindProvider>
 ```
 
@@ -84,11 +91,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 اضافة `<Stack.Navigator>` بهذا الشكل داخل `</TailwindProvider>`
 
 ```
-<TailwindProvider>                                                                      
-<Stack.Navigator>                                                                     
-<Stack.Screen name="Home" component={HomeScreen} />                                 
-</Stack.Navigator>                                                                    
-</TailwindProvider> 
+<TailwindProvider>
+<Stack.Navigator>
+<Stack.Screen name="Home" component={HomeScreen} />
+</Stack.Navigator>
+</TailwindProvider>
 ```
 
 اضافة هذا السطر تحت imports
@@ -96,6 +103,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 ```
 const Stack = createNativeStackNavigator();
 ```
+
 #### تعديل Header في React Navigation
 
 ```
@@ -107,4 +115,3 @@ useLayoutEffect(()=> {
 	});
 }, []);
 ```
-

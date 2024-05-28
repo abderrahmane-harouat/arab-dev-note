@@ -1,6 +1,6 @@
 ---
 title: "إستعمال vue composition api"
-date: "2 ربيع الثاني 1444 ﻬ"
+updated: "2 ربيع الثاني 1444 ﻬ"
 heroImage: "https://raw.githubusercontent.com/devicons/devicon/master/icons/vuejs/vuejs-original.svg"
 ---
 
@@ -8,7 +8,7 @@ heroImage: "https://raw.githubusercontent.com/devicons/devicon/master/icons/vuej
 
 ## فقه vuejs : Composition Api
 
-### البداية : انشاء  مشروع vue الطريقة الاولى (الافضل)
+### البداية : انشاء مشروع vue الطريقة الاولى (الافضل)
 
 تثبيت vue cli
 
@@ -22,26 +22,26 @@ sudo yarn global add @vue/cli
 vue create .
 ```
 
-النقطة  تعني انشئ المشروع في المجلد الحالي فلا ينشئ مجلد جديد ليضع فيه الملفات
+النقطة تعني انشئ المشروع في المجلد الحالي فلا ينشئ مجلد جديد ليضع فيه الملفات
 
 بعد ذلك يمكنك اختيار الاعدادات التي تريد
 
-### البداية : انشاء  مشروع vue الطريقة الثانية
+### البداية : انشاء مشروع vue الطريقة الثانية
 
 ```
 yarn create vite
 ```
-بعد ذلك نسمي المشروع 
+
+بعد ذلك نسمي المشروع
 ثم نختار framework .. حسنا سأختار vue
 و من ثم نختار vue او vue-ts اي بمعنى اختيار ما اذا كنا سنستعمل javascript أو typescript
-و اخيرا نقوم بالدخول الى المشروع و تثبيت متطلباته و  تشغيله
+و اخيرا نقوم بالدخول الى المشروع و تثبيت متطلباته و تشغيله
+
 ```
 cd my-project
 yarn add
 yarn dev
 ```
-
-
 
 ### انشاء متغير
 
@@ -59,7 +59,7 @@ const message = ref('السلام عليكم')
 
 هنا يمكن استبدال "السلام عليكم" ب 1 , true , null
 
-الطريقة الثانية : لكنها لا زالت تجريبية ... نظيف reactivityTransform هكذا 
+الطريقة الثانية : لكنها لا زالت تجريبية ... نظيف reactivityTransform هكذا
 
 ```
 // vite.config.js
@@ -72,7 +72,7 @@ export default {
 }
 ```
 
-بعد ذلك نستخدم المتغيرات بسهولة 
+بعد ذلك نستخدم المتغيرات بسهولة
 
 ```
 <script setup>
@@ -90,7 +90,7 @@ function increment() {
 </template>
 ```
 
-لكن ماذا اذا كان لدينا عدة متغيرات هكذا 
+لكن ماذا اذا كان لدينا عدة متغيرات هكذا
 
 ```
 const { supported, storage, setSync, remove } = useLocalStorage(key,input)
@@ -120,7 +120,7 @@ const person = reactive({ name: "ahmad", age: 25, gender: "male" })
 
 ### استعمال localStorage في vue
 
-اولا تثبيت  vue-composable
+اولا تثبيت vue-composable
 
 ```
 pnpm add vue-composable
@@ -135,6 +135,7 @@ const key = ref("key_name_in_localStorage");
 const tabSync = ref(false);
 const { supported, storage, setSync, remove } = useLocalStorage(key, "default value of key");
 ```
+
 يمكن استخدام storage داخل **script tag** تاغ هكذا
 
 ```
@@ -181,10 +182,13 @@ const switcher = () => {
 ### استعمال heroicons
 
 نقوم بتثبيتها
+
 ```
 pnpm add @heroicons/vue
 ```
-ثم نستدعي الايقونة  ونظيفها 
+
+ثم نستدعي الايقونة ونظيفها
+
 ```
 <script setup>
 import { PencilIcon } from '@heroicons/vue/24/outline'
@@ -225,7 +229,7 @@ const scaleAnimation = () => {
 
 ### استعمال darkmode عن طريق vueuse و tailwindcss
 
-اولا نقوم بتثبيت vueuse 
+اولا نقوم بتثبيت vueuse
 
 ```
 pnpm add @vueuse/core
@@ -237,7 +241,7 @@ pnpm add @vueuse/core
 import { useDark, useToggle } from '@vueuse/core'
 ```
 
-ثم نضع متغيرات هكذا 
+ثم نضع متغيرات هكذا
 
 ```
 const isDark = useDark()
@@ -274,12 +278,12 @@ class="bg-slate-800 dark:bg-white dark:text-slate-800 p-3 shadow-xl m-2 mt-5 tex
 
 ### استعمال vitepress (لا يدعم العربية . اذن لا استعمله)
 
-
 ```
 pnpm init
 pnpm add vitepress -D
 mkdir docs && echo '# السلام عليكم' > docs/index.md
 ```
+
 بعد ذلك نضيف هذا الكود الى `package.json`
 
 ```
@@ -295,12 +299,12 @@ mkdir docs && echo '# السلام عليكم' > docs/index.md
 ```
 
 ثم
- 
+
 ```
 yarn docs:dev
 ```
 
-الآن من أجل تعديل الموقع سننشئ مجلد .vitepress داخل docs ثم ننشئ بداخله  ملف config.js
+الآن من أجل تعديل الموقع سننشئ مجلد .vitepress داخل docs ثم ننشئ بداخله ملف config.js
 
 ```
 export default {
@@ -310,7 +314,7 @@ export default {
 
 ```
 
-لتعديل css ننشئ ملف index.js داخل مجلد theme الذي هو بداخل .vitepress 
+لتعديل css ننشئ ملف index.js داخل مجلد theme الذي هو بداخل .vitepress
 
 ```
 // .vitepress/theme/index.js
@@ -332,8 +336,7 @@ export default DefaultTheme
 
 ```
 
-
-###  استخدام json data كقاعدة بيانات
+### استخدام json data كقاعدة بيانات
 
 على سبيل المثال ننشئ ملف data.json داخل src
 
@@ -367,7 +370,8 @@ console.log(allData)
 yarn install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
 ```
-بعد ذلك نعدل tailwind.config.js  هكذا
+
+بعد ذلك نعدل tailwind.config.js هكذا
 
 ```
 /** @type {import('tailwindcss').Config} */
@@ -382,6 +386,7 @@ module.exports = {
   plugins: [],
 }
 ```
+
 بعد ذلك اضف هذا الى src/assets/main.css و او احذف كل شيئ و اضفه
 
 ```

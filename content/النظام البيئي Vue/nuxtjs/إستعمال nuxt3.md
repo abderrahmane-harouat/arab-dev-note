@@ -1,12 +1,12 @@
 ---
 title: "إستعمال nuxt 3"
-date: "1 ربيع الثاني 1444 ﻬ"
-heroImage: "https://raw.githubusercontent.com/bestofjs/bestofjs-webui/master/public/logos/nuxt.dark.svg"
+updated: "20 ذو القعدة 1445 ﻬ"
+heroImage: "https://raw.githubusercontent.com/bestofjs/bestofjs/master/apps/bestofjs-nextjs/public/logos/nuxt2.svg"
 ---
 
 # بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ
 
-## انشاء مشروع  nuxt 3 جديد
+## انشاء مشروع nuxt 3 جديد
 
 ```
 pnpm dlx nuxi init .
@@ -16,13 +16,13 @@ yarn install
 yarn dev
 ```
 
-## اضافة TailwindCss ل  nuxt
+## اضافة TailwindCss ل nuxt
 
 ```
 yarn add --dev @nuxtjs/tailwindcss
 ```
 
-ثم اضف الى nuxt config 
+ثم اضف الى nuxt config
 
 ```
 export default defineNuxtConfig({
@@ -32,13 +32,14 @@ export default defineNuxtConfig({
 
 ## استعمال components
 
-انشئ ملف داخل components على سبيل المثال TheHeader.vue و املأه بما شئت  ثم استدعه في app.vue بكل سهولة 
+انشئ ملف داخل components على سبيل المثال TheHeader.vue و املأه بما شئت ثم استدعه في app.vue بكل سهولة
 
 ```
 <template>
  <TheHeader />
 </template>
 ```
+
 يمكن استدعائه في pages او layout
 
 ## اطلاق المشروع في github pages
@@ -57,7 +58,7 @@ export default {
 }
 ```
 
-ثم 
+ثم
 
 ```
 export default {
@@ -68,7 +69,7 @@ export default {
 }
 ```
 
-ثم نقوم بتثبيت  push-dir
+ثم نقوم بتثبيت push-dir
 
 ```
 pnpm add push-dir -D
@@ -92,7 +93,7 @@ pnpm generate
 pnpm deploy
 ```
 
-## اضافة الصفحات pages 
+## اضافة الصفحات pages
 
 عند انشاء pages الامور ستتغير بحيث يجب انشاء index.vue اجباريا داخل pages لكن لا يمكننا الاستغناء عن app.vue الذي يتواجد في root directory بل نضع داخله
 
@@ -108,7 +109,7 @@ pnpm deploy
 
 ## اضافة layouts
 
-ننشئ  مجلد layouts بداخلة ملف default.vue به
+ننشئ مجلد layouts بداخلة ملف default.vue به
 
 ```
 <template>
@@ -119,7 +120,7 @@ pnpm deploy
 </template>
 ```
 
-كل الصفحات ستكون مكان **<slot />**  ... الآن في app.vue
+كل الصفحات ستكون مكان **<slot />** ... الآن في app.vue
 
 ```
 <template>
@@ -146,7 +147,7 @@ export default defineNuxtConfig({
 })
 ```
 
-ثم ننشئ ملف content في root directory ثم  ننشئ فيه على سبيل المثال home.md او .csv او .yml او .json
+ثم ننشئ ملف content في root directory ثم ننشئ فيه على سبيل المثال home.md او .csv او .yml او .json
 
 ```
 # الصفحة الرئيسية

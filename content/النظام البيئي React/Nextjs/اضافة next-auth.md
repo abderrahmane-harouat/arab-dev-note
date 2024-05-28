@@ -1,14 +1,22 @@
+---
+title: "إستعمال Next Auth"
+updated: "20 ذو القعدة 1445 ﻬ"
+heroImage: "https://next-auth.js.org/img/logo/logo-sm.png"
+---
+
+# بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ
+
 ## استعمال next auth
 
 نقوم بتثبيت next-auth في مشروعنا
 
-
 ```
 yarn add next-auth
 ```
+
 ### استعمال Github لتسجيل الدخول
 
-ثم اذهب الى https://github.com/settings/developers و اضغط  `new OAuth app`
+ثم اذهب الى https://github.com/settings/developers و اضغط `new OAuth app`
 
 سمي التطبيق اي اسم تريد في `Application name`
 سنضع http://localhost:3000 في `Homepage URL` ثم نغيره الى اسم الموقع الخاص بنا فيما بعد
@@ -24,7 +32,8 @@ NEXTAUTH_URL=http://localhost:3000
 GITHUB_ID=088660c680b60fb512ae
 GITHUB_SECRET=c42b30b3f51048d3e79899a42d65e25f9e2e9fe8f
 ```
-ننشئ بعد ذلك ملف `[...nextauth].js` في `pages/api/auth` 
+
+ننشئ بعد ذلك ملف `[...nextauth].js` في `pages/api/auth`
 
 ```
 import NextAuth from 'next-auth'
@@ -57,7 +66,8 @@ function MyApp({ Component, pageProps }) {
 
 export default MyApp
 ```
-اخيرا اضف هذا الكود في `Header.js` او  `Navbar.js` كما تريد 
+
+اخيرا اضف هذا الكود في `Header.js` او `Navbar.js` كما تريد
 
 ```
 import Link from 'next/link'
@@ -76,4 +86,3 @@ export default function Header () {
     signOut()
   }
 ```
-

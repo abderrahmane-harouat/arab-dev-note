@@ -1,3 +1,11 @@
+---
+title: "إستعمال Sanity"
+updated: "20 ذو القعدة 1445 ﻬ"
+heroImage: "https://raw.githubusercontent.com/dochne/wappalyzer/main/src/images/icons/Sanity.svg"
+---
+
+# بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ
+
 ## البدأ باستعمال sanity
 
 الدخول الى موقع sanity.io و الضغط على زر get started
@@ -86,7 +94,7 @@ export default createSchema({
 
 تم شرح cors config في canva
 
-نقوم بتثبيت sanity 
+نقوم بتثبيت sanity
 
 ```
 pnpm add @nuxtjs/sanity
@@ -103,4 +111,3 @@ export default defineNuxtConfig({
   }
 })
 ```
-

@@ -1,7 +1,7 @@
-
+---
 title: "إستعمال بايثون"
-updated: "16 ربيع الثاني 1444 ﻬ"
-heroImage: ""
+updated: "20 ذو القعدة 1445 ﻬ"
+heroImage: "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_python.svg"
 ---
 
 # بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ
@@ -24,7 +24,7 @@ heroImage: ""
 - مشهورة في مجال تطبيقات الويب
 - مشهورة أيضا في مجال علم البيانات
 
-**أشهر  frameworks**
+**أشهر frameworks**
 
 مجال تطوير الويب
 
@@ -33,7 +33,7 @@ heroImage: ""
 
 مجال علم البيانات
 
-- تانسرفلو  tensorflow
+- تانسرفلو tensorflow
 - سايكيت scikit-learn
 
 ## تثبيت البيئة على archlinux
@@ -42,7 +42,7 @@ heroImage: ""
 sudo pacman -Syu
 ```
 
-من المهم تحديث كامل النظام  حتى لا تحدث مشاكل مع برامج أخرى
+من المهم تحديث كامل النظام حتى لا تحدث مشاكل مع برامج أخرى
 
 ```sh
 sudo pacman -S python
@@ -144,7 +144,7 @@ print(result)
 # True
 ```
 
-نقارن عن طريق `>` ما إذا كان أصغر من 
+نقارن عن طريق `>` ما إذا كان أصغر من
 
 ```python
 result = 1 < 4
@@ -212,7 +212,7 @@ print(alphabet[-1]) # z
 print(alphabet[-2]) # y
 ```
 
-للحصول على index حرف او كلمة على سبيل المثال 
+للحصول على index حرف او كلمة على سبيل المثال
 
 ```python
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
@@ -244,7 +244,7 @@ print(len(alphabet)) # 26
 
 ```python
 title = 'this is Python note'
-# note: count is case sensitive 
+# note: count is case sensitive
 print(title.count('s')) # 2
 ```
 
@@ -278,7 +278,7 @@ print(title[8:14:2]) # pto
 print(title[13:7:-1]) # nohtyP
 ```
 
-تحويل String إلى List 
+تحويل String إلى List
 
 ```python
 # default : split by space
@@ -308,39 +308,37 @@ print(value.isalnum()) # False
 
 ![ قائمة دوال التحقق من النص](/python_is.png "قائمة دوال التحقق من النص")
 
-
-مفهوم  raw string : لكتابة string دون الحاجة إلى backslash escape
+مفهوم raw string : لكتابة string دون الحاجة إلى backslash escape
 
 ```python
 # print a path without escape
 path = r'C:\xMyFolder\xMySubFolder\xMyFile.txt'
 print(path)
 # note: if you write R instead of r its fine
-# note: if you type r'\' you will get an error 
+# note: if you type r'\' you will get an error
 ```
 
 الدالة format
 
 ```python
-first_name = 'mohamed' 
+first_name = 'mohamed'
 last_name = 'fahd'
 age = 19
 print('my name is {} {} and my age is {}'.format(first_name, last_name, age))
 
 # format with index
-first_name = 'mohamed' 
+first_name = 'mohamed'
 last_name = 'fahd'
 age = 19
 print('my name is {2} {1} and my age is {0}'.format(age, last_name, first_name))
 					      #index0  #index1    #index2
-					      
+
 # using varible
-first_name = 'mohamed' 
+first_name = 'mohamed'
 last_name = 'fahd'
 age = 19
 print('my name is {f_name} {l_name} and my age is {age}'.format(age=age, l_name=last_name, f_name=first_name))
 ```
-
 
 ### باقي البيانات
 
@@ -374,6 +372,7 @@ print(type(is_student))
 ```python
 names = ['dana', 'mariam', 'moatassime', 'abdallah', 1 , 50.5, True]
 ```
+
 نستطيع الوصول إلى عناصر القوائم و عرضها عن طريق index
 
 ```python
@@ -402,6 +401,7 @@ print(names[1::-1])
 names = ['dana', 'mariam', 'moatassime', 'abdallah', 1 , 50.5, True]
 print(len(names)) # 7
 ```
+
 للحصول على عدد المرات التي تكرر فيها عنصر ما
 
 ```python
@@ -421,7 +421,6 @@ print(names)
 
 للوصول إلى index العناصر
 
-
 ```python
 names = ['dana', 'mariam', 'moatassime', 'abdallah', 'khalil', 'abdallah'] # name of abdallah is written twice
 # note: it gets the first item
@@ -437,7 +436,7 @@ print(names)
 # ['dana', 'mariam', 'moatassime', 'abdallah', 'housam']
 ```
 
-اضافة عنصر في المكان الذي نريده في القائمة 
+اضافة عنصر في المكان الذي نريده في القائمة
 
 ```python
 # insert(index, value)
@@ -485,7 +484,6 @@ print(numbers)
 print(names)
 ```
 
-
 ترتيب list ترتيبا تنازليا
 
 ```python
@@ -499,7 +497,7 @@ print(names)
 
 ### مفهوم tuples
 
-نوع  tuple عناصره غير قابلة للتعديل
+نوع tuple عناصره غير قابلة للتعديل
 
 ```python
 child_one = ('abdurahman', 'ghazi', 'male', '22')
@@ -552,7 +550,7 @@ child_one = {'name': 'abdurahman', 'city': 'tlemcen', 'age': 22}
 print(child_one.values())
 ```
 
-الآن للحصول على جميع المفاتيح 
+الآن للحصول على جميع المفاتيح
 
 ```python
 child_one = {'name': 'abdurahman', 'city': 'tlemcen', 'age': 22}
@@ -582,13 +580,13 @@ multiplyed_numbers = [num*2 for num in numbers]
 print(multiplyed_numbers) # [2, 4, 8, 12, 16]
 
 # for loop + if example
-# multiply only numbers which are greater than 4 
+# multiply only numbers which are greater than 4
 numbers = [1, 2, 4, 6, 8]
 multiplyed_numbers = [num*2 for num in numbers if num>4]
 print(multiplyed_numbers) # [12, 16]
 
 # for loop + multiple conditions example
-# multiply only numbers which are greater than 4 and divisible by 5 
+# multiply only numbers which are greater than 4 and divisible by 5
 numbers = [1, 2, 4, 5, 6, 8]
 multiplyed_numbers = [num*2 for num in numbers if num>4 and num % 5 == 0]
 print(multiplyed_numbers) # [10]
@@ -605,6 +603,7 @@ age = 22
 if age >= 18:
 	print('you are an adult')
 ```
+
 ### نظرة على مفهوم Else
 
 اذا لم يتحقق الشرط يمكننا فعل شيئ آخر عن طريق else
@@ -636,7 +635,7 @@ else:
 
 ## التكرار loop
 
-### إستخدام while 
+### إستخدام while
 
 طباعة الارقام من واحد إلى ستة
 
@@ -648,7 +647,7 @@ while i<=6:
 	i+=1
 ```
 
-### إستخدام for 
+### إستخدام for
 
 طباعة كل الاسماء
 
@@ -659,9 +658,9 @@ for student in students:
 	print(student)
 ```
 
-### إستخدام for مع  range
+### إستخدام for مع range
 
-طباعة  الأرقام من 0  إلى 9 بسهولة
+طباعة الأرقام من 0 إلى 9 بسهولة
 
 ```python
 for n in range(10):
@@ -677,14 +676,14 @@ for n in range(5,10):
 
 ## الدوال functions
 
-**طريقة كتابة الدالة** : نكتب def ثم  اسم الدالة مع إضافة () قوسين ثم : نقطتين و ندخل الاوامر 
+**طريقة كتابة الدالة** : نكتب def ثم اسم الدالة مع إضافة () قوسين ثم : نقطتين و ندخل الاوامر
 
 لن يعمل اي شيئ داخل الدالة حتى تتم مناداتها في الاسفل كما يوضح المثال التالي
 
 ```python
 def func_name():
 	print("السلام عليكم")
-	
+
 func_name()
 ```
 
@@ -693,7 +692,7 @@ func_name()
 ```python
 def func_name():
 	print("السلام عليكم")
-	
+
 func_name()
 func_name()
 ```
@@ -702,22 +701,21 @@ func_name()
 
 يمكننا تعديل الدالة عند استدعاءها عن طريق parameter مثال def func_name(parameter)
 
-```
+````
 ```python
 def func_name(name):
 	print("hello", name)
-	
+
 func_name("ahmad")
 func_name("hamza")
-```
+````
 
 يمكن إضافة عدة parameters "مدخلات"
-
 
 ```python
 def func_name(name, age): # هذه الدالة في مرحلة الإنشاء و ما بداخلها يسمى parameter
 	print("hello", name, "your age is ", age)
-	
+
 func_name("ahmad", 22) # ما بداخل هذه الدالة يسمى argument
 func_name("hamza", 25) # position of argument is important or the meaning will be messed up
 ```
@@ -745,20 +743,20 @@ func_name() # we can call the function without arguments if we give it parameter
 func_name('fahd') # if we give the function argument it will override the default
 ```
 
-مفهوم argument packing : كتابة عدد لا متناهي من arguments : و نفعل ذلك عن طريق إظافة *
+مفهوم argument packing : كتابة عدد لا متناهي من arguments : و نفعل ذلك عن طريق إظافة \*
 
 ```python
 def avg(*args): # we can name the parameter what ever we want
 	total = sum(args)
 	leng = len(args)
-	
+
 	average = total / leng
-	
+
 	print(average)
 avg(2, 6, 4)
 ```
 
-مفهوم argument unpacking =>  إستقبال tuple ك arguments : عن طريق *
+مفهوم argument unpacking => إستقبال tuple ك arguments : عن طريق \*
 
 ```python
 def info(name1, name2, name3):
@@ -779,7 +777,7 @@ items = ['a', 'b', 'v']
 my_items(*items) # result is a tuple
 ```
 
-مفهوم Dictionary Packing : في هذا المفهوم نستطيع تحويل arguments إلى dictionary عن طريق **
+مفهوم Dictionary Packing : في هذا المفهوم نستطيع تحويل arguments إلى dictionary عن طريق \*\*
 
 ```python
 def info(**kwargs): # kwargs is just common in the community
@@ -787,8 +785,7 @@ def info(**kwargs): # kwargs is just common in the community
 info(name='ali', age=18) # {'name': 'ali', 'age': 18}
 ```
 
-مفهوم Dictionary Unpacking : يمكننا استعمال dictionary ك argument عن طريق **
-
+مفهوم Dictionary Unpacking : يمكننا استعمال dictionary ك argument عن طريق \*\*
 
 ```python
 def info(name, age):
@@ -797,13 +794,11 @@ d = {'name': 'ali', 'age': 18}
 info(**d) # My name is ali and my age is 18 years old
 ```
 
-
 ### إرجاع قيمة من الدالة Return
 
-في الأمثلة السابقة لم نكن نرجع البيانات. ما كنا نفعله هو الطباعة عن طريق print, هنا  return تقوم بارجع البيانات لنفعل بها ما نشاء لاحقا 
+في الأمثلة السابقة لم نكن نرجع البيانات. ما كنا نفعله هو الطباعة عن طريق print, هنا return تقوم بارجع البيانات لنفعل بها ما نشاء لاحقا
 
-في هذا المثال طبعا لن يحدث شيء قمنا بارجاع النص فقط 
-
+في هذا المثال طبعا لن يحدث شيء قمنا بارجاع النص فقط
 
 ```python
 def function_name():
@@ -820,16 +815,16 @@ def function_name():
 
 print(function_name())
 ```
+
 **ملاحظة** :هنا return تنفعنا كثيرا بحيث نستعملها متى نريد في المكان الذي نريد
 
-إستعمال if else مع return 
+إستعمال if else مع return
 
 ```python
 def isEvenOrOdd(num):
 	return 'even' if num % 2 == 0 else 'odd'
 print(isEvenOrOdd(5))
 ```
-
 
 ### الدوال الجاهزة built-in functions
 
@@ -882,7 +877,7 @@ print(math.remainder(10,3))
 import random
 print(random.randint(1,100))
 
-# replace 
+# replace
 value = '1\n2\n3\n4\n5'
 print(value.replace('\n', '-')) # 1-2-3-4-5
 
@@ -936,7 +931,7 @@ names.reverse()
 print(names)
 ```
 
-## التاريخ و الوقت  date and time
+## التاريخ و الوقت date and time
 
 إنشاء تاريخ
 
@@ -974,7 +969,7 @@ print(time.second) # 30
 print(time.minute) # 10
 ```
 
-الوقت الحالي , اليوم الحالي , الساعة الحالية , الدقيقة الحالية , الثانية الحالية 
+الوقت الحالي , اليوم الحالي , الساعة الحالية , الدقيقة الحالية , الثانية الحالية
 
 ```python
 import datetime
@@ -1016,7 +1011,7 @@ print(50.5 in names)
 print(50.5 not in names)
 ```
 
-## الدمج و التكرار  repeat and concatenate
+## الدمج و التكرار repeat and concatenate
 
 الدمج
 
@@ -1042,12 +1037,10 @@ my_list = [1, 6, 8]
 second_list = [5, 5, 5]
 print(my_list + second_list) # [1, 6, 8, 5, 5, 5]
 ```
- 
- التكرار
- 
+
+التكرار
+
 ```python
 my_list = [1, 6, 8]
 print(my_list*3) # [1, 6, 8, 1, 6, 8, 1, 6, 8]
 ```
- 
-

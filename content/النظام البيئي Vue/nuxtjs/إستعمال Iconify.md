@@ -1,14 +1,14 @@
 ---
-title: "إستعمال Iconify في   nuxt"
-date: "1 ربيع الثاني 1444 ﻬ"
-heroImage: "https://raw.githubusercontent.com/bestofjs/bestofjs-webui/master/public/logos/nuxt.dark.svg"
+title: "إستعمال Iconify في nuxt"
+updated: "20 ذو القعدة 1445 ﻬ"
+heroImage: "https://raw.githubusercontent.com/simple-icons/simple-icons/master/icons/iconify.svg"
 ---
 
 # بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ
 
 # طريقة استعمال iconify
 
-اولا التثبيت 
+اولا التثبيت
 
 ```
 yarn add nuxt-icon
@@ -22,7 +22,7 @@ modules: [
 ]
 ```
 
-و نظيفها بكل سهولة 
+و نظيفها بكل سهولة
 
 ```
 <Icon name="mdi:youtube" size="96" color="#15CA82"  />
