@@ -1,7 +1,7 @@
 ---
 title: "أساسيات Typescript"
-updated: "2 جمادى الثاني 1444 ﻬ"
-heroImage: ""
+updated: "20 ذو القعدة 1445 ﻬ"
+heroImage: "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_typescript.svg"
 ---
 
 # بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ
@@ -16,20 +16,19 @@ heroImage: ""
 
 يمكن استعمالها في المشاريع الكبيرة فيكون العمل منظم و احترافي
 
-فيما تكمن أهميتها ؟ يمكننا من خلالها اكتشاف الاخطاء قبل تشغيل الكود و هذه العملية تسمى static type checking  و هذا يوفر علينا عناء استعمال unit testing في بعض الحالات و ليس كلها
+فيما تكمن أهميتها ؟ يمكننا من خلالها اكتشاف الاخطاء قبل تشغيل الكود و هذه العملية تسمى static type checking و هذا يوفر علينا عناء استعمال unit testing في بعض الحالات و ليس كلها
 
 اي كود جافايكريبت يعمل ك كود تايبسكريبت بغض النظر عن الاخطاء التي يجب تصحيحها
 
-هناك اقبال كبير من قبل المكتبات الشهيرة لدعمها و جعلها جزء منها مثل react vue next nuxt 
+هناك اقبال كبير من قبل المكتبات الشهيرة لدعمها و جعلها جزء منها مثل react vue next nuxt
 
 هناك مميزات غير موجودة في جافاسكريبت مثل generics و interfaces و decorators
 
-المتصفح لا يستعمل تايبسكريبت بل يحول الكود الى جافاسكريبت عن طريق compiler 
+المتصفح لا يستعمل تايبسكريبت بل يحول الكود الى جافاسكريبت عن طريق compiler
 
 العملية تسمى transpilation
 
-
-## تثبيت typescript 
+## تثبيت typescript
 
 لاستعمال تايبسكريبت يجب تثبيت nodejs و npm
 
@@ -37,7 +36,7 @@ heroImage: ""
 sudo pacman -S nodejs npm
 ```
 
-الان نثبت تايبسكريبت على مستوى النظام 
+الان نثبت تايبسكريبت على مستوى النظام
 
 ```
 sudo npm i -g typescript
@@ -45,14 +44,13 @@ sudo npm i -g typescript
 sudo yarn global add typescript
 ```
 
-
-للتأكد من انه يعمل بدون مشاكل 
+للتأكد من انه يعمل بدون مشاكل
 
 ```
 tsc -v
 ```
 
-لعمل compile ل ملف 
+لعمل compile ل ملف
 
 ```
 tsc filename.ts
@@ -60,7 +58,7 @@ tsc filename.ts
 
 فينتج عنه filename.js
 
-لمراقبة الملف 
+لمراقبة الملف
 
 ```
 tsc -w filename.ts
@@ -71,7 +69,8 @@ tsc -w filename.ts
 ```
 tsc --init
 ```
-للمزيد فيما يخص التعديلات 
+
+للمزيد فيما يخص التعديلات
 [قناة الزيرو الدرس 3](https://youtu.be/CSll1rsRPOI?list=PLDoPjvoNmBAy532K9M_fjiAmrJ0gkCyLJ)
 
 ## تعيين البيانات type Annotation
@@ -109,7 +108,7 @@ let myArrayMulti: (string|boolean)[] = ["omar", "said", "mostafa", "kamal",true,
 let myArrayInArray: (string | number | string[] | boolean[]) = ['ahmad',5,['said'],[true,false]];
 ```
 
-## الدوال 
+## الدوال
 
 ```
 function showDetails(theName: string, age: number, salary: number): string{
@@ -124,7 +123,6 @@ console.log(showDetails('osama', 25, 500))
 من أجل الحصول على تنبيه عند إنشاء متغير غير مستعمل يجب جعل `noUnusedLocals = true`
 
 من أجل الحصول على تنبيه عند إنشاء parameter غير مستعمل يجب جعل `noUnusedParameters = true`
-
 
 ## تذكير في Function Optional and Default Parameters في الجافاسكريبت
 
@@ -176,7 +174,7 @@ function showDetails(theName: string, age?: number, country?: string){
 console.log(showDetails('osama')) // osama undefined undefined
 ```
 
-لكن عندما يكون لديك parameter إختياري يجب أن تضع parameter الإجباري في الأول 
+لكن عندما يكون لديك parameter إختياري يجب أن تضع parameter الإجباري في الأول
 **مثال**
 
 ```
@@ -233,7 +231,7 @@ const add = function(num1: number, num2: number): number {
 console.log(add(5,50))
 ```
 
-## إستعمال Data Types 
+## إستعمال Data Types
 
 ### إستخدام type Alias
 
@@ -269,7 +267,7 @@ function getActions(btns: buttons){
 getActions({up: "jump", down: "down", right: "go right", left: "go left" })
 ```
 
-لكن مذا إن أردنا أن نزيد نوع آخر type , لكن من دون التعديل في buttons ... نفعل هكذا 
+لكن مذا إن أردنا أن نزيد نوع آخر type , لكن من دون التعديل في buttons ... نفعل هكذا
 
 ```
 type buttons = {
@@ -315,6 +313,7 @@ console.log(compare(15,15))
 console.log(compare(15,10))
 console.log(compare(15,20))
 ```
+
 **مثال آخر**
 
 ```
@@ -348,7 +347,7 @@ console.log(published) //false
 
 #### إستخدام void
 
-إستخدام void يعني أننا لن نرجع أي قيمة 
+إستخدام void يعني أننا لن نرجع أي قيمة
 
 ```
 function logging(msg: string): void{
@@ -362,7 +361,7 @@ console.log(logging('hello'))
 
 #### إستخدام never
 
-إستخدام never يعني أننا لن نرجع أصلا 
+إستخدام never يعني أننا لن نرجع أصلا
 
 ```
 const fail = (msg: string): never => {
@@ -408,4 +407,3 @@ if (lvl === 'easy'){
 ## مصادر :
 
 قناة أسامة الزيرو
-

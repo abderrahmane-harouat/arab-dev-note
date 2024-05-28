@@ -1,7 +1,7 @@
-
+---
 title: "إستعمال بايثون"
-updated: "16 ربيع الثاني 1444 ﻬ"
-heroImage: ""
+updated: "20 ذو القعدة 1445 ﻬ"
+heroImage: "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_python.svg"
 ---
 
 # بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ
@@ -24,7 +24,7 @@ heroImage: ""
 - مشهورة في مجال تطبيقات الويب
 - مشهورة أيضا في مجال علم البيانات
 
-**أشهر  frameworks**
+**أشهر frameworks**
 
 مجال تطوير الويب
 
@@ -33,7 +33,7 @@ heroImage: ""
 
 مجال علم البيانات
 
-- تانسرفلو  tensorflow
+- تانسرفلو tensorflow
 - سايكيت scikit-learn
 
 ## تثبيت البيئة على archlinux
@@ -42,7 +42,7 @@ heroImage: ""
 sudo pacman -Syu
 ```
 
-من المهم تحديث كامل النظام  حتى لا تحدث مشاكل مع برامج أخرى
+من المهم تحديث كامل النظام حتى لا تحدث مشاكل مع برامج أخرى
 
 ```sh
 sudo pacman -S python
@@ -144,7 +144,7 @@ print(result)
 # True
 ```
 
-نقارن عن طريق `>` ما إذا كان أصغر من 
+نقارن عن طريق `>` ما إذا كان أصغر من
 
 ```python
 result = 1 < 4
@@ -223,6 +223,7 @@ print(type(is_student))
 ```python
 names = ['dana', 'mariam', 'moatassime', 'abdallah', 1 , 50.5, True]
 ```
+
 نستطيع الوصول إلى عناصر القوائم و عرضها عن طريق index
 
 ```python
@@ -252,7 +253,7 @@ print(names)
 # ['dana', 'mariam', 'moatassime', 'abdallah', 'housam']
 ```
 
-اضافة عنصر في المكان الذي نريده في القائمة 
+اضافة عنصر في المكان الذي نريده في القائمة
 
 ```python
 # insert(index, value)
@@ -282,7 +283,7 @@ print(names)
 
 ### مفهوم tuples
 
-نوع  tuple عناصره غير قابلة للتعديل
+نوع tuple عناصره غير قابلة للتعديل
 
 ```python
 child_one = ('abdurahman', 'ghazi', 'male', '22')
@@ -335,7 +336,7 @@ child_one = {'name': 'abdurahman', 'city': 'tlemcen', 'age': 22}
 print(child_one.values())
 ```
 
-الآن للحصول على جميع المفاتيح 
+الآن للحصول على جميع المفاتيح
 
 ```python
 child_one = {'name': 'abdurahman', 'city': 'tlemcen', 'age': 22}
@@ -353,6 +354,7 @@ age = 22
 if age >= 18:
 	print('you are an adult')
 ```
+
 ### نظرة على مفهوم Else
 
 اذا لم يتحقق الشرط يمكننا فعل شيئ آخر عن طريق else
@@ -384,7 +386,7 @@ else:
 
 ## التكرار loop
 
-### إستخدام while 
+### إستخدام while
 
 طباعة الارقام من واحد إلى ستة
 
@@ -396,7 +398,7 @@ while i<=6:
 	i+=1
 ```
 
-### إستخدام for 
+### إستخدام for
 
 طباعة كل الاسماء
 
@@ -407,9 +409,9 @@ for student in students:
 	print(student)
 ```
 
-### إستخدام for مع  range
+### إستخدام for مع range
 
-طباعة  الأرقام من 0  إلى 9 بسهولة
+طباعة الأرقام من 0 إلى 9 بسهولة
 
 ```python
 for n in range(10):
@@ -425,14 +427,14 @@ for n in range(5,10):
 
 ## الدوال functions
 
-**طريقة كتابة الدالة** : نكتب def ثم  اسم الدالة مع إضافة () قوسين ثم : نقطتين و ندخل الاوامر 
+**طريقة كتابة الدالة** : نكتب def ثم اسم الدالة مع إضافة () قوسين ثم : نقطتين و ندخل الاوامر
 
 لن يعمل اي شيئ داخل الدالة حتى تتم مناداتها في الاسفل كما يوضح المثال التالي
 
 ```python
 def func_name():
 	print("السلام عليكم")
-	
+
 func_name()
 ```
 
@@ -441,7 +443,7 @@ func_name()
 ```python
 def func_name():
 	print("السلام عليكم")
-	
+
 func_name()
 func_name()
 ```
@@ -450,31 +452,30 @@ func_name()
 
 يمكننا تعديل الدالة عند استدعاءها عن طريق parameter مثال def func_name(parameter)
 
-```
+````
 ```python
 def func_name(name):
 	print("hello", name)
-	
+
 func_name("ahmad")
 func_name("hamza")
-```
+````
 
 يمكن إضافة عدة parameters "مدخلات"
 
 ```python
 def func_name(name, age):
 	print("hello", name, "your age is ", age)
-	
+
 func_name("ahmad", 22)
 func_name("hamza", 25)
 ```
 
 ### إرجاع قيمة من الدالة Return
 
-في الأمثلة السابقة لم نكن نرجع البيانات. ما كنا نفعله هو الطباعة عن طريق print, هنا  return تقوم بارجع البيانات لنفعل بها ما نشاء لاحقا 
+في الأمثلة السابقة لم نكن نرجع البيانات. ما كنا نفعله هو الطباعة عن طريق print, هنا return تقوم بارجع البيانات لنفعل بها ما نشاء لاحقا
 
-في هذا المثال طبعا لن يحدث شيء قمنا بارجاع النص فقط 
-
+في هذا المثال طبعا لن يحدث شيء قمنا بارجاع النص فقط
 
 ```python
 def function_name():
@@ -491,6 +492,7 @@ def function_name():
 
 print(function_name())
 ```
+
 هنا return تنفعنا كثيرا بحيث نستعملها متى نريد في المكان الذي نريد
 
 ### الدوال الجاهزة built-in functions
@@ -508,5 +510,3 @@ str(46.5) # 46.5
 # int to string
 str(46) # 46
 ```
-
-

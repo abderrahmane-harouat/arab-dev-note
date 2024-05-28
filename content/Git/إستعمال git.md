@@ -6,14 +6,14 @@ heroImage: "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/i
 
 # بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ
 
-
 ## الحالة git status
 
- - للإطلاع على حالة المشروع : يعني ما هي الملفات التي تم تعديلها و ما الى ذلك
+- للإطلاع على حالة المشروع : يعني ما هي الملفات التي تم تعديلها و ما الى ذلك
 
 ```
 git status
 ```
+
 ## عملية stage و unstage
 
 - لإضافة الملفات إلى staging area
@@ -25,14 +25,13 @@ git add .
 git add *
 ```
 
-- لحذف الملفات من staging area 
+- لحذف الملفات من staging area
 
 ```
 git reset index.html
-// or 
+// or
 git reset // all files
 ```
-
 
 النقطة او النجمة تعنيان إضافة كل الملفات و المجلدات
 
@@ -44,7 +43,7 @@ git reset // all files
 git remote -v
 ```
 
-- لتحميل الملفات من remote repo ل local repo 
+- لتحميل الملفات من remote repo ل local repo
 
 ```
 git pull origin
@@ -63,10 +62,7 @@ git reset --hard "Commit Hash Here"
 git push origin main --force
 ```
 
-
-
-
-## التعامل مع الفرع  branch
+## التعامل مع الفرع branch
 
 ### عرض الفرع Show Branches
 
@@ -82,11 +78,11 @@ git checkout "Branch Name"
 
 ### حذف الفرع Delete Branch
 
-
 ```
 git branch -d "Branch Name"
 ```
-هنا لن يحذف branch اذا كانت بالملفات تعديلات , هنا نحذف الملف بقوة عن طريق -D 
+
+هنا لن يحذف branch اذا كانت بالملفات تعديلات , هنا نحذف الملف بقوة عن طريق -D
 
 ### إنشاء الفرع و الإنتقال اليه Create Branch And Switch To It
 
@@ -121,7 +117,7 @@ git clean -f
 
 ## التعامل مع stash
 
-عن طريق stash يمكن حفظ الملفات التي لا نريد دفعها حاليا على سبيل المثال 
+عن طريق stash يمكن حفظ الملفات التي لا نريد دفعها حاليا على سبيل المثال
 
 **ملاحظة** : لا يمكن استعمال stash الا بعد commit واحد على الأقل و نظيف إلى ال stash بعد دفع الملف إلى staging area
 
@@ -191,8 +187,9 @@ git push origin --delete "Version Name Or Tag Name Here"
 ```
 git config -l
 // or
-git config --list 
+git config --list
 ```
+
 - عرض الايميل و اسم المستخدم
 
 ```
@@ -200,8 +197,7 @@ git config --global user.name
 git config --global user.email
 ```
 
-- اعطاءهم قيمة 
-
+- اعطاءهم قيمة
 
 ```
 git config --global user.name "abdurahman-ghazi"
@@ -215,9 +211,10 @@ git config --global user.name ""
 // or
 git config --global --unset user.name
 ```
+
 - لإجراء تعديلات على git ندخل على home/usename/.gitconfig و نعدل عليه و نظيف اليه alias على سبييل المثال
 
-## انشاء موقع على  github page
+## انشاء موقع على github page
 
 ننشئ مستودع و نسميه هكذا باستعمال username
 
@@ -232,12 +229,14 @@ git add .
 git commit -m "اضافة localStorage"
 git push -u origin main
 ```
+
 ثم ندخل الاسم و التوكن الذي يعتبر password
 
 ```
 username: abdurahman-ghazi
 password: xyz
 ```
+
 ## دفع ملف dist فقط
 
 أولا تثبيب gh-pages
@@ -254,7 +253,7 @@ yarn add gh-pages -D
 }
 ```
 
-و أخيرا 
+و أخيرا
 
 ```
 yarn deploy
@@ -262,7 +261,7 @@ yarn deploy
 
 ## إنشاء ssh key
 
-نحتاج هذه الطريقة لتفادي كتابة username و password(token) في كل مرة 
+نحتاج هذه الطريقة لتفادي كتابة username و password(token) في كل مرة
 
 ```
 ssh-keygen -t rsa -b 4096 -C "abdurahman-ghazi@email.com"
@@ -270,18 +269,17 @@ ssh-keygen -t rsa -b 4096 -C "abdurahman-ghazi@email.com"
 
 ثم نظغط enter و نكتب كلمة السر و نكررها , طبعا عليك حفظ كلمة السر لأنك ستستعملها في كل مرة
 
-نقوم بطباعة key هكذا 
+نقوم بطباعة key هكذا
 
 ```
 cat /home/ghazi/.ssh/id_rsa.pub
 ```
 
-نقوم بنسخه و نذهب إلى github.com نسجل الدخول ثم نذهب الى settings => ssh and gpg keys و نضغط new ssh key 
+نقوم بنسخه و نذهب إلى github.com نسجل الدخول ثم نذهب الى settings => ssh and gpg keys و نضغط new ssh key
 
-اخيرا نقوم بلصق key في الخانة key 
+اخيرا نقوم بلصق key في الخانة key
 
-في title اكتب اي شيئ و نضغظ add ssh key 
-
+في title اكتب اي شيئ و نضغظ add ssh key
 
 الآن لتجربة الاتصال
 
@@ -297,25 +295,25 @@ ssh -T git@github.com
 git@github.com:abdurahman-ghazi/markdown-arabic-vue.git
 ```
 
-و ليس 
+و ليس
 
 ```
 https://github.com/abdurahman-ghazi/markdown-arabic-vue.git
 ```
 
-طبعا لمعرفة origin 
+طبعا لمعرفة origin
 
 ```
 git remote show origin
 ```
 
-لحذف origin 
+لحذف origin
 
 ```
 git remote remove origin
 ```
 
-لإضافة origin 
+لإضافة origin
 
 ```
 git remote add origin git@github.com:abdurahman-ghazi/markdown-arabic-vue.git
