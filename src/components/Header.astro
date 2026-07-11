@@ -1,0 +1,497 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<header class="site-header">
+  <div class="header-inner content-area">
+    <a href="/" class="site-logo" aria-label="الرئيسية">
+      <Icon name="lucide:house" size={22} />
+    </a>
+    <nav class="header-nav">
+      <a href="/#notes">الملاحظات</a>
+
+      <button class="poem-btn" type="button" aria-label="أبيات في طلب العلم" id="poem-open">
+        <span class="poem-btn-icon">✦</span>
+        <span class="poem-btn-text">أبيات</span>
+      </button>
+
+      <button class="theme-toggle" aria-label="تبديل السمة" type="button">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/>
+          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- Poem Dialog (outside header so it overlays everything) -->
+<div class="poem-overlay" id="poem-overlay" aria-hidden="true">
+  <div class="poem-dialog" role="dialog" aria-modal="true" aria-label="أبيات في طلب العلم">
+    <button class="dialog-close" id="poem-close" aria-label="إغلاق" type="button">✕</button>
+
+    <div class="poem-rule"><span class="ornament">✦</span></div>
+    <div class="poem-lines" id="poem-lines"></div>
+    <p class="poem-author" id="poem-author"></p>
+
+    <div class="poem-nav">
+      <button class="nav-arrow" id="poem-prev" type="button" aria-label="القصيدة السابقة">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+      <span class="poem-counter" id="poem-counter"></span>
+      <button class="nav-arrow" id="poem-next" type="button" aria-label="القصيدة التالية">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const poems = [
+    {
+      verses: [
+        ['فَكَابِدْ إلَى أَنْ تَبْلُغَ النَّفْسُ عُذْرَهَا', 'وَكُنْ فِي اقْتِبَاسِ الْعِلْمِ طَلَّاعَ أَنْجُدِ'],
+        ['وَلَا يَذْهَبَنَّ الْعُمُرُ مِنْك سَبَهْلَلًا', 'وَلَا تُغْبَنن فِي النِّعْمَتَيْنِ بَلْ اجْهَدِ'],
+      ],
+      author: 'السَّفَّارِيني',
+    },
+    {
+      verses: [
+        ['أَخِي لَنْ تَنَالَ الْعِلْمَ إِلَّا بِسِتَّةٍ', 'سَأُنْبِيكَ عَنْ تَفْصِيلِهَا بِبَيَانِ'],
+        ['ذَكَاءٍ وَحِرْصٍ وَاجْتِهَادٍ وَبُلْغَةٍ', 'وَصُحْبَةِ أُسْتَاذٍ وَطُولِ زَمَانِ'],
+      ],
+      author: 'الإمام الشافعي',
+    },
+    {
+      verses: [
+        ['وَمَنْ لَمْ يَذُقْ مُرَّ التَّعَلُّمِ سَاعَةً', 'تَجَرَّعَ ذُلَّ الْجَهْلِ طُولَ حَيَاتِهِ'],
+        ['وَمَنْ فَاتَهُ التَّعْلِيمُ وَقْتَ شَبَابِهِ', 'فَكَبِّرْ عَلَيْهِ أَرْبَعًا لِوَفَاتِهِ'],
+      ],
+      author: 'الإمام الشافعي',
+    },
+    {
+      verses: [
+        ['عَلَى قَدْرِ أَهْلِ العَزْمِ تَأتِي العَزَائِمُ', 'وَتَأتِي عَلَى قَدْرِ الكِرَامِ المَكَارِمُ'],
+        ['وَتَعْظُمُ فِي عَيْنِ الصَّغِيرِ صِغَارُهَا', 'وَتَصْغُرُ فِي عَيْنِ العَظِيمِ العَظَائِمُ'],
+      ],
+      author: 'المتنبي',
+    },
+  ];
+
+  const overlay = document.getElementById('poem-overlay');
+  const dialog = overlay?.querySelector('.poem-dialog');
+  const openBtn = document.getElementById('poem-open');
+  const closeBtn = document.getElementById('poem-close');
+  const prevBtn = document.getElementById('poem-prev');
+  const nextBtn = document.getElementById('poem-next');
+  const linesEl = document.getElementById('poem-lines');
+  const authorEl = document.getElementById('poem-author');
+  const counterEl = document.getElementById('poem-counter');
+
+  let current = Math.floor(Math.random() * poems.length);
+
+  function renderPoem(index: number) {
+    const poem = poems[index];
+    if (!linesEl || !authorEl || !counterEl) return;
+
+    linesEl.classList.add('poem-fade');
+
+    setTimeout(() => {
+      let html = '';
+      poem.verses.forEach((couplet, i) => {
+        if (i > 0) html += '<div class="stanza-break"></div>';
+        couplet.forEach(line => { html += `<p>${line}</p>`; });
+      });
+      linesEl.innerHTML = html;
+      authorEl.textContent = `— ${poem.author}`;
+      counterEl.textContent = `${index + 1} / ${poems.length}`;
+
+      linesEl.classList.remove('poem-fade');
+    }, 180);
+  }
+
+  function openDialog() {
+    overlay?.classList.add('open');
+    overlay?.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    renderPoem(current);
+  }
+
+  function closeDialog() {
+    overlay?.classList.remove('open');
+    overlay?.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  openBtn?.addEventListener('click', openDialog);
+  closeBtn?.addEventListener('click', closeDialog);
+
+  overlay?.addEventListener('click', (e) => {
+    if (e.target === overlay) closeDialog();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!overlay?.classList.contains('open')) return;
+    if (e.key === 'Escape') closeDialog();
+    if (e.key === 'ArrowLeft') { current = (current + 1) % poems.length; renderPoem(current); }
+    if (e.key === 'ArrowRight') { current = (current - 1 + poems.length) % poems.length; renderPoem(current); }
+  });
+
+  prevBtn?.addEventListener('click', () => {
+    current = (current - 1 + poems.length) % poems.length;
+    renderPoem(current);
+  });
+
+  nextBtn?.addEventListener('click', () => {
+    current = (current + 1) % poems.length;
+    renderPoem(current);
+  });
+
+  // Theme toggle
+  const toggle = document.querySelector('.theme-toggle');
+  const root = document.documentElement;
+
+  function getTheme() {
+    const stored = localStorage.getItem('theme');
+    if (stored) return stored;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  function applyTheme(theme: string) {
+    root.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }
+
+  applyTheme(getTheme());
+
+  toggle?.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme') || getTheme();
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+  });
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--header-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 3.5rem;
+  }
+
+  .site-logo {
+    color: var(--text);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+  }
+
+  .site-logo:hover { color: var(--accent); }
+
+  .header-nav {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .header-nav a {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .header-nav a:hover { color: var(--accent); }
+
+  /* ── Poem Button (shining) ── */
+
+  .poem-btn {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--accent-border);
+    border-radius: var(--radius-pill);
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .poem-btn:hover {
+    background: var(--accent-border);
+    border-color: var(--accent);
+  }
+
+  .poem-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .poem-btn-icon {
+    font-size: 0.7rem;
+    animation: pulse-star 2s ease-in-out infinite;
+  }
+
+  .poem-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -120%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent 0%, rgba(212, 166, 50, 0.2) 50%, transparent 100%);
+    animation: shimmer 4s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes shimmer {
+    0%, 100% { right: -120%; }
+    50% { right: 120%; }
+  }
+
+  @keyframes pulse-star {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .poem-btn::after { animation: none; }
+    .poem-btn-icon { animation: none; }
+  }
+
+  /* ── Theme Toggle ── */
+
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.35rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .theme-toggle:hover {
+    color: var(--accent);
+    border-color: var(--accent-border);
+  }
+
+  .theme-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  :root[data-theme="dark"] .icon-sun { display: block; }
+  :root[data-theme="dark"] .icon-moon { display: none; }
+  :root[data-theme="light"] .icon-sun { display: none; }
+  :root[data-theme="light"] .icon-moon { display: block; }
+
+  .icon-sun { display: none; }
+  .icon-moon { display: block; }
+
+  @media (prefers-color-scheme: dark) {
+    .icon-sun { display: block; }
+    .icon-moon { display: none; }
+  }
+
+  @media (max-width: 640px) {
+    .header-nav { gap: 0.6rem; }
+    .header-nav a { font-size: 0.8rem; }
+    .poem-btn-text { display: none; }
+    .poem-btn { padding: 0.35rem 0.55rem; }
+  }
+
+  /* ── Poem Dialog Overlay ── */
+
+  .poem-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s;
+  }
+
+  .poem-overlay.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .poem-dialog {
+    position: relative;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem 2.5rem 1.5rem;
+    max-width: 560px;
+    width: calc(100% - 2rem);
+    text-align: center;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
+    transform: translateY(16px) scale(0.97);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .poem-overlay.open .poem-dialog {
+    transform: translateY(0) scale(1);
+  }
+
+  .dialog-close {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .dialog-close:hover {
+    background: var(--bg-surface-hover);
+    color: var(--text);
+  }
+
+  .dialog-close:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* ── Poem Content ── */
+
+  .poem-rule {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .poem-rule::before,
+  .poem-rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to var(--dir, left), transparent, var(--accent-border));
+  }
+
+  .poem-rule::before { --dir: right; }
+  .poem-rule::after { --dir: left; }
+
+  .ornament {
+    color: var(--accent);
+    font-size: 0.6rem;
+    flex-shrink: 0;
+  }
+
+  .poem-lines {
+    padding: 1.5rem 0 1rem;
+    transition: opacity 0.18s ease;
+  }
+
+  .poem-lines :global(p) {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    line-height: 2.3;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .poem-lines :global(.stanza-break) {
+    height: 0.5rem;
+  }
+
+  .poem-lines.poem-fade {
+    opacity: 0;
+  }
+
+  .poem-author {
+    font-family: var(--font-display);
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+  }
+
+  /* ── Navigation Arrows ── */
+
+  .poem-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .nav-arrow {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    width: 2.2rem;
+    height: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .nav-arrow:hover {
+    border-color: var(--accent-border);
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  .nav-arrow:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .poem-counter {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
+    min-width: 3rem;
+    text-align: center;
+  }
+
+  @media (max-width: 640px) {
+    .poem-dialog { padding: 2rem 1.5rem 1.25rem; }
+    .poem-lines :global(p) { font-size: 1.1rem; line-height: 2.1; }
+  }
+</style>

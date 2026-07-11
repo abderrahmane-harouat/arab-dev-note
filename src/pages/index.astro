@@ -1,0 +1,161 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import NoteCard from '../components/NoteCard.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const allNotes = await getCollection('notes');
+
+const domainOrder = ['أساسيات', 'أُطر ومكتبات', 'أدوات', 'تصميم', 'الأمن السيبراني'];
+
+const domainCounts: Record<string, number> = {};
+allNotes.forEach(note => {
+  const d = note.data.domain;
+  domainCounts[d] = (domainCounts[d] || 0) + 1;
+});
+
+const activeDomains = domainOrder.filter(d => domainCounts[d]);
+
+allNotes.sort((a, b) => {
+  const da = domainOrder.indexOf(a.data.domain);
+  const db = domainOrder.indexOf(b.data.domain);
+  if (da !== db) return da - db;
+  return b.data.updated.localeCompare(a.data.updated);
+});
+---
+
+<BaseLayout>
+  <Hero />
+
+  <main class="content-area" id="notes">
+    <div class="section-header">
+      <h2 class="section-title">الملاحظات</h2>
+      <span class="note-count">{allNotes.length} ملاحظة</span>
+    </div>
+
+    <div class="filters" role="tablist" aria-label="تصفية حسب المجال">
+      <button class="filter-btn active" data-domain="all" role="tab" aria-selected="true">
+        الكل
+        <span class="filter-count">{allNotes.length}</span>
+      </button>
+      {activeDomains.map(domain => (
+        <button class="filter-btn" data-domain={domain} role="tab" aria-selected="false">
+          {domain}
+          <span class="filter-count">{domainCounts[domain]}</span>
+        </button>
+      ))}
+    </div>
+
+    <div class="notes-grid">
+      {allNotes.map(note => (
+        <NoteCard note={note} />
+      ))}
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const cards = document.querySelectorAll<HTMLElement>('.note-card');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const domain = btn.dataset.domain;
+      buttons.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+
+      cards.forEach(card => {
+        const show = domain === 'all' || card.dataset.domain === domain;
+        card.style.display = show ? '' : 'none';
+      });
+    });
+  });
+</script>
+
+<style>
+  main { padding-bottom: 4rem; }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+
+  .note-count {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--accent-border);
+    color: var(--accent);
+  }
+
+  .filter-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .filter-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  .filter-count {
+    font-size: 0.72rem;
+    opacity: 0.7;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .filter-btn.active .filter-count { opacity: 0.85; }
+
+  .notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 640px) {
+    .notes-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

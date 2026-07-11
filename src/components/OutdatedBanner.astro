@@ -1,0 +1,57 @@
+---
+interface Props {
+  reason?: string;
+  alternative?: string;
+}
+
+const { reason, alternative } = Astro.props;
+---
+
+<div class="outdated-banner" role="alert">
+  <div class="outdated-icon">⚠️</div>
+  <div class="outdated-content">
+    <p class="outdated-title">هذا المحتوى قديم وقد لا يكون دقيقاً</p>
+    {reason && <p class="outdated-reason">{reason}</p>}
+    {alternative && (
+      <a href={alternative} class="outdated-link">الاطلاع على المحتوى المحدّث ←</a>
+    )}
+  </div>
+</div>
+
+<style>
+  .outdated-banner {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    background: var(--outdated-bg);
+    border: 1px solid var(--outdated-border);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+  }
+
+  .outdated-icon { font-size: 1.2rem; flex-shrink: 0; line-height: 1; }
+
+  .outdated-title {
+    font-weight: 600;
+    color: var(--outdated-text);
+    font-size: 0.95rem;
+  }
+
+  .outdated-reason {
+    color: var(--outdated-text);
+    font-size: 0.88rem;
+    opacity: 0.85;
+    margin-top: 0.25rem;
+  }
+
+  .outdated-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--outdated-border);
+  }
+
+  .outdated-link:hover { text-decoration: underline; }
+</style>

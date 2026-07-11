@@ -1,0 +1,93 @@
+---
+
+---
+
+<section class="hero">
+  <div class="hero-inner content-area">
+    <div class="hero-rule"><span class="ornament">✦</span></div>
+
+    <h1 class="hero-title">ملاحظات المبرمج</h1>
+    <p class="hero-subtitle">حديقة معرفة شخصية</p>
+
+    <p class="hero-desc">
+      ملاحظات و دروس في البرمجة و الأمن السيبراني باللغة العربية،
+      لعلها تنفعك و تخفف عنك معاناة البحث و تكسبك بعض الوقت
+    </p>
+
+    <div class="hero-rule"><span class="ornament">✦</span></div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: 4rem 0 2.5rem;
+  }
+
+  .hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .hero-rule {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .hero-rule::before,
+  .hero-rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+      to var(--dir, left),
+      transparent,
+      var(--accent-border)
+    );
+  }
+
+  .hero-rule::before { --dir: right; }
+  .hero-rule::after { --dir: left; }
+
+  .ornament {
+    color: var(--accent);
+    font-size: 0.55rem;
+    flex-shrink: 0;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: 2.6rem;
+    font-weight: 700;
+    margin: 1.5rem 0 0.4rem;
+    line-height: 1.3;
+  }
+
+  .hero-subtitle {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .hero-desc {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.85;
+    margin-bottom: 1.5rem;
+    max-width: 480px;
+  }
+
+  @media (max-width: 640px) {
+    .hero { padding: 2.5rem 0 1.5rem; }
+    .hero-title { font-size: 2rem; }
+    .hero-desc { font-size: 0.95rem; }
+  }
+</style>
