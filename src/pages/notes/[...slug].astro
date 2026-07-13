@@ -20,6 +20,9 @@ const {
   stage, history, heroImage
 } = note.data;
 
+const wordCount = note.body ? note.body.trim().split(/\s+/).length : 0;
+const readTime = Math.max(1, Math.ceil(wordCount / 200));
+
 const stageLabels: Record<string, string> = {
   seedling: '🌱 بذرة',
   budding: '🌿 نامية',
@@ -49,6 +52,8 @@ const stageLabels: Record<string, string> = {
           <span>أُنشئ: {created}</span>
           <span class="sep">|</span>
           <span>آخر تحديث: {updated}</span>
+          <span class="sep">|</span>
+          <span>⏱ {readTime} دقيقة قراءة</span>
         </div>
 
         {tags && tags.length > 0 && (
@@ -96,7 +101,7 @@ const stageLabels: Record<string, string> = {
   .note-page {
     padding-top: 2.5rem;
     padding-bottom: 4rem;
-    max-width: 780px;
+    max-width: var(--content-width);
   }
 
   .note-header {

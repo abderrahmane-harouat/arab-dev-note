@@ -11,11 +11,22 @@ const stageLabels: Record<string, string> = {
   budding: '🌿 نامية',
   evergreen: '🌳 مكتملة',
 };
+
+const wordCount = note.body ? note.body.trim().split(/\s+/).length : 0;
+const readTime = Math.max(1, Math.ceil(wordCount / 200));
+
+const now = new Date();
+const updatedDate = new Date(updated);
+const daysSinceUpdate = Math.floor((now.getTime() - updatedDate.getTime()) / (1000 * 60 * 60 * 24));
+const isNew = daysSinceUpdate <= 30;
 ---
 
 <a href={`/notes/${note.id}`} class="note-card" data-domain={domain}>
   <div class="card-top">
-    <span class="domain-badge">{domain}</span>
+    <div class="card-top-right">
+      <span class="domain-badge">{domain}</span>
+      {isNew && <span class="new-badge">جديد</span>}
+    </div>
     {outdated && <span class="outdated-tag">قديم</span>}
   </div>
 
@@ -28,7 +39,10 @@ const stageLabels: Record<string, string> = {
   <h3 class="card-title">{title}</h3>
 
   <div class="card-bottom">
-    <span class={`stage-badge ${stage}`}>{stageLabels[stage] || stageLabels.budding}</span>
+    <div class="card-meta">
+      <span class={`stage-badge ${stage}`}>{stageLabels[stage] || stageLabels.budding}</span>
+      <span class="read-time">⏱ {readTime} د</span>
+    </div>
     <div class="card-dates">
       <span>أُنشئ {created}</span>
       <span class="date-sep">·</span>
@@ -66,6 +80,22 @@ const stageLabels: Record<string, string> = {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 0.85rem;
+  }
+
+  .card-top-right {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .new-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #fff;
+    background: var(--seedling);
+    padding: 0.12rem 0.5rem;
+    border-radius: var(--radius-pill);
+    letter-spacing: 0.02em;
   }
 
   .domain-badge {
@@ -120,6 +150,18 @@ const stageLabels: Record<string, string> = {
     flex-direction: column;
     gap: 0.5rem;
     margin-top: auto;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .read-time {
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
   }
 
   .stage-badge {

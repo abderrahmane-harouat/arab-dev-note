@@ -17,12 +17,7 @@ allNotes.forEach(note => {
 
 const activeDomains = domainOrder.filter(d => domainCounts[d]);
 
-allNotes.sort((a, b) => {
-  const da = domainOrder.indexOf(a.data.domain);
-  const db = domainOrder.indexOf(b.data.domain);
-  if (da !== db) return da - db;
-  return b.data.updated.localeCompare(a.data.updated);
-});
+allNotes.sort((a, b) => b.data.updated.localeCompare(a.data.updated));
 ---
 
 <BaseLayout>
