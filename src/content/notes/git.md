@@ -1,15 +1,34 @@
 ---
-title: "إستعمالات git"
+title: "ما هو git و أهم استعمالاته"
 domain: "أدوات"
 tags: ["git"]
 created: "2022-10-31"
-updated: "2024-05-28"
+updated: "2026-07-14"
 heroImage: "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_git2.svg"
 outdated: false
 stage: "evergreen"
 ---
 
 # بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ
+
+## ما هو git فعلًا؟
+
+git هو برنامج يسجّل تاريخ التعديلات التي تحدث على مجلد من الملفات. هذا المجلد يسمى **repository** (أو اختصارًا "repo"). في كل مرة تحفظ فيها snapshot من عملك (أي نسخة كاملة من حالة المشروع في لحظة معينة)، يخزّنها git على شكل **commit** — و هي نسخة مجمّدة من كل ملفاتك في تلك اللحظة، مرفقة برسالة توضيحية مثل "إصلاح مشكلة تسجيل الدخول".
+
+لماذا وُجد git أصلًا؟ حتى تستطيع الرجوع إلى أي نسخة سابقة من مشروعك، و حتى يتمكن عدة أشخاص من العمل على نفس المشروع دون أن يمسح أحدهم عمل الآخر.
+
+مثال بسيط — تحويل مجلد عادي إلى repo :
+
+```
+mkdir myproject
+cd myproject
+git init          # أصبح هذا المجلد الآن git repository
+echo "hello" > file.txt
+git add file.txt  # نطلب من git تتبّع هذا الملف
+git commit -m "first commit"   # حفظ snapshot من العمل
+```
+
+هذه هي الحلقة الأساسية بأكملها : add ثم commit لحفظ snapshot.
 
 ## الحالة git status
 
