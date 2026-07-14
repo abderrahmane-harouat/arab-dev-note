@@ -29,6 +29,20 @@ allNotes.sort((a, b) => b.data.updated.localeCompare(a.data.updated));
       <span class="note-count">{allNotes.length} ملاحظة</span>
     </div>
 
+    <div class="search-box">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="8" />
+        <path d="m21 21-4.3-4.3" />
+      </svg>
+      <input
+        type="search"
+        id="note-search"
+        placeholder="ابحث في الملاحظات..."
+        aria-label="ابحث في الملاحظات"
+        autocomplete="off"
+      />
+    </div>
+
     <div class="filters" role="tablist" aria-label="تصفية حسب المجال">
       <button class="filter-btn active" data-domain="all" role="tab" aria-selected="true">
         الكل
@@ -47,6 +61,8 @@ allNotes.sort((a, b) => b.data.updated.localeCompare(a.data.updated));
         <NoteCard note={note} />
       ))}
     </div>
+
+    <p class="no-results" id="no-results" hidden>لا توجد ملاحظات تطابق بحثك</p>
   </main>
 
   <Footer />
@@ -55,21 +71,48 @@ allNotes.sort((a, b) => b.data.updated.localeCompare(a.data.updated));
 <script>
   const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
   const cards = document.querySelectorAll<HTMLElement>('.note-card');
+  const searchInput = document.getElementById('note-search') as HTMLInputElement;
+  const noResults = document.getElementById('no-results') as HTMLElement;
+
+  let activeDomain = 'all';
+
+  // توحيد النص العربي حتى لا يؤثر التشكيل أو أشكال الهمزة على نتائج البحث
+  function normalize(text: string): string {
+    return text
+      .toLowerCase()
+      .replace(/[ً-ْ]/g, '')
+      .replace(/[أإآ]/g, 'ا')
+      .replace(/ة/g, 'ه')
+      .replace(/ى/g, 'ي');
+  }
+
+  function applyFilters() {
+    const query = normalize(searchInput.value.trim());
+    let visible = 0;
+
+    cards.forEach(card => {
+      const matchesDomain = activeDomain === 'all' || card.dataset.domain === activeDomain;
+      const matchesQuery = !query || normalize(card.dataset.search || '').includes(query);
+      const show = matchesDomain && matchesQuery;
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+
+    noResults.hidden = visible > 0;
+  }
+
+  searchInput.addEventListener('input', applyFilters);
 
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
-      const domain = btn.dataset.domain;
+      activeDomain = btn.dataset.domain || 'all';
       buttons.forEach(b => {
         b.classList.remove('active');
         b.setAttribute('aria-selected', 'false');
       });
       btn.classList.add('active');
       btn.setAttribute('aria-selected', 'true');
-
-      cards.forEach(card => {
-        const show = domain === 'all' || card.dataset.domain === domain;
-        card.style.display = show ? '' : 'none';
-      });
+      applyFilters();
     });
   });
 </script>
@@ -93,6 +136,52 @@ allNotes.sort((a, b) => b.data.updated.localeCompare(a.data.updated));
   .note-count {
     font-size: 0.85rem;
     color: var(--text-secondary);
+  }
+
+  .search-box {
+    position: relative;
+    margin-bottom: 1rem;
+    max-width: 420px;
+  }
+
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    inset-inline-start: 0.9rem;
+    transform: translateY(-50%);
+    width: 1rem;
+    height: 1rem;
+    color: var(--text-secondary);
+    pointer-events: none;
+  }
+
+  #note-search {
+    width: 100%;
+    padding: 0.55rem 2.5rem 0.55rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    background: var(--bg-surface);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  #note-search::placeholder {
+    color: var(--text-secondary);
+  }
+
+  #note-search:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+
+  .no-results {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 3rem 0;
+    font-size: 1rem;
   }
 
   .filters {

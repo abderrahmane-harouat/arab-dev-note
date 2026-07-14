@@ -28,7 +28,6 @@ git add file.txt  # نطلب من git تتبّع هذا الملف
 git commit -m "first commit"   # حفظ snapshot من العمل
 ```
 
-هذه هي الحلقة الأساسية بأكملها : add ثم commit لحفظ snapshot.
 
 ## الحالة git status
 

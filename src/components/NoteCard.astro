@@ -21,7 +21,12 @@ const daysSinceUpdate = Math.floor((now.getTime() - updatedDate.getTime()) / (10
 const isNew = daysSinceUpdate <= 30;
 ---
 
-<a href={`/notes/${note.id}`} class="note-card" data-domain={domain}>
+<a
+  href={`/notes/${note.id}`}
+  class="note-card"
+  data-domain={domain}
+  data-search={`${title} ${(note.data.tags || []).join(' ')}`}
+>
   <div class="card-top">
     <div class="card-top-right">
       <span class="domain-badge">{domain}</span>
