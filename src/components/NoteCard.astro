@@ -16,9 +16,11 @@ const wordCount = note.body ? note.body.trim().split(/\s+/).length : 0;
 const readTime = Math.max(1, Math.ceil(wordCount / 200));
 
 const now = new Date();
-const updatedDate = new Date(updated);
-const daysSinceUpdate = Math.floor((now.getTime() - updatedDate.getTime()) / (1000 * 60 * 60 * 24));
-const isNew = daysSinceUpdate <= 30;
+const DAY = 1000 * 60 * 60 * 24;
+const daysSinceCreated = Math.floor((now.getTime() - new Date(created).getTime()) / DAY);
+const daysSinceUpdate = Math.floor((now.getTime() - new Date(updated).getTime()) / DAY);
+const isNew = daysSinceCreated <= 30;
+const isUpdated = !isNew && daysSinceUpdate <= 30;
 ---
 
 <a
@@ -31,6 +33,7 @@ const isNew = daysSinceUpdate <= 30;
     <div class="card-top-right">
       <span class="domain-badge">{domain}</span>
       {isNew && <span class="new-badge">جديد</span>}
+      {isUpdated && <span class="new-badge updated-badge">محدث</span>}
     </div>
     {outdated && <span class="outdated-tag">قديم</span>}
   </div>
@@ -101,6 +104,10 @@ const isNew = daysSinceUpdate <= 30;
     padding: 0.12rem 0.5rem;
     border-radius: var(--radius-pill);
     letter-spacing: 0.02em;
+  }
+
+  .updated-badge {
+    background: var(--budding, var(--accent));
   }
 
   .domain-badge {
