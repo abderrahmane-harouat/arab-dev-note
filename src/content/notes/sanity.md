@@ -5,7 +5,8 @@ tags: ["sanity", "cms"]
 created: "2022-10-31"
 updated: "2024-05-28"
 heroImage: "https://raw.githubusercontent.com/dochne/wappalyzer/main/src/images/icons/Sanity.svg"
-outdated: false
+outdated: true
+outdatedReason: "مكتوبة لـ Sanity Studio v2 — نظام parts في تعريف الـ schema أُزيل نهائيًا في v3 (ديسمبر 2022)"
 stage: "budding"
 ---
 

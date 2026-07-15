@@ -3,7 +3,7 @@ title: "إستعمال بايثون"
 domain: "أساسيات"
 tags: ["python"]
 created: "2023-04-29"
-updated: "2024-05-28"
+updated: "2026-07-15"
 heroImage: "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_python.svg"
 outdated: false
 stage: "budding"
@@ -77,7 +77,7 @@ print(38)
 
 ## المتغيرات
 
-نستطيع إعطاء المتغير أي اسم نريد ما عدا الكلمات المحجوزة في بايثون مثل print على سبيل المثال
+نستطيع إعطاء المتغير أي اسم نريد ما عدا الكلمات المحجوزة keywords في بايثون مثل `if` و `def` على سبيل المثال
 
 ```python
 name = 'ghazi'
@@ -125,7 +125,7 @@ print(result)
 # False
 ```
 
-نقارن عن طريق `=!` ما إذا كان لا يساوي
+نقارن عن طريق `!=` ما إذا كان لا يساوي
 
 ```python
 result = 8 != 7
@@ -133,7 +133,7 @@ print(result)
 # True
 ```
 
-نقارن عن طريق `<` ما إذا كان أكبر من
+نقارن عن طريق `>` ما إذا كان أكبر من
 
 ```python
 result = 3 > 2
@@ -141,7 +141,7 @@ print(result)
 # True
 ```
 
-نقارن عن طريق `=<` ما إذا كان أكبر من او يساوي
+نقارن عن طريق `>=` ما إذا كان أكبر من او يساوي
 
 ```python
 result = 3 >= 3
@@ -149,7 +149,7 @@ print(result)
 # True
 ```
 
-نقارن عن طريق `>` ما إذا كان أصغر من
+نقارن عن طريق `<` ما إذا كان أصغر من
 
 ```python
 result = 1 < 4
@@ -157,7 +157,7 @@ print(result)
 # True
 ```
 
-نقارن عن طريق `=>` ما إذا كان أصغر من أو يساوي
+نقارن عن طريق `<=` ما إذا كان أصغر من أو يساوي
 
 ```python
 result = 7 <= 3
@@ -277,7 +277,7 @@ print(title[:])
 print(title[-4:])
 
 # using steps [from:to:step]
-print(title[8:14:2]) # pto
+print(title[8:14:2]) # Pto
 
 # get "Python" inverse
 print(title[13:7:-1]) # nohtyP
@@ -386,9 +386,9 @@ names = ['dana', 'mariam', 'moatassime', 'abdallah']
 
 # print moatassime
 print(names[2])
-# same example using slice function
-s = slice(2)
-print(names[2])
+# slice function takes a range (start, stop), not a single index
+s = slice(0, 2)
+print(names[s])  # ['dana', 'mariam']
 
 # print last
 print(names[-1])
@@ -874,7 +874,9 @@ print(sum(numbers)) # 1658
 import math
 print(math.sqrt(144)) # 12.0
 
-# remainder باقي القسمة
+# math.remainder is the IEEE 754 remainder
+# انتبه : ليست نفس باقي القسمة % و قد تختلف النتيجة عنها
+# math.remainder(10, 6) gives -2.0 while 10 % 6 gives 4
 import math
 print(math.remainder(10,3))
 

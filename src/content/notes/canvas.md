@@ -3,7 +3,7 @@ title: "أساسيات canvas"
 domain: "أساسيات"
 tags: ["javascript", "canvas"]
 created: "2022-10-31"
-updated: "2024-05-28"
+updated: "2026-07-15"
 heroImage: "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/src/svgs/html.svg"
 outdated: false
 stage: "budding"
@@ -32,11 +32,13 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 ```
 
-وباسعمال تايلويند tailwind يمكنك اضافة كلاس class
+انتبه: استعمال CSS مثل كلاسات تايلويند tailwind
 
 ```
 class="w-screen h-screen"
 ```
+
+يقوم فقط بتمديد حجم عرض العنصر على الشاشة، بينما تبقى دقة الرسم الداخلية (drawing buffer) على قيمتها الافتراضية 300x150 فتظهر الرسومات مشوّهة أو ضبابية، لذلك يجب دائمًا ضبط الدقة الداخلية عبر السمتين `width` و `height` أو عن طريق الجافاسكريبت كما في المثال أعلاه
 
 وحتى يرى الكانفاس يمكنك اضافة
 

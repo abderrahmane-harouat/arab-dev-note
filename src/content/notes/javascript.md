@@ -3,7 +3,7 @@ title: "أساسيات javascript"
 domain: "أساسيات"
 tags: ["javascript"]
 created: "2022-10-31"
-updated: "2024-05-28"
+updated: "2026-07-15"
 heroImage: "https://raw.githubusercontent.com/uiwjs/file-icons/master/icon/javascript.svg"
 outdated: false
 stage: "evergreen"
@@ -46,6 +46,7 @@ console.log(age) //26
 يمكن تحديث قيمة المتغير بعد تعريفه، فمثلاً بعد تعريفنا للمتغير السابق age يمكننا تغيير قيمته من 26 إلى 30، ولتوضيح الفكرة نلاحظ المثال التالي:
 
 ```
+console.log(age) //26
 age = 30
 console.log(age) //30
 ```
@@ -106,7 +107,7 @@ multiline comment
 
 النوع String: يمثل هذا النوع البيانات النصيّة مثل characters والنصوص strings.
 
-النوع Number: يمثل هذا النوع البيانات الرقميّة مثل الأعداد الصحيحة integers والأعداد ذات النقطة العشرية double و float.
+النوع Number: يمثل هذا النوع البيانات الرقميّة، وفي JavaScript يوجد نوع رقمي واحد فقط (عدد عشري بدقة 64-bit حسب معيار IEEE 754) يشمل الأعداد الصحيحة والأعداد ذات النقطة العشرية معًا، بالإضافة إلى نوع منفصل اسمه BigInt للأعداد الصحيحة الكبيرة جدًا.
 
 النوع Boolean: يمثل هذا النوع إحدى القيمتين إما true أو false.
 
@@ -205,6 +206,9 @@ console.log(name); // Mishal
 في المثال السابق قمنا بتعريف متغير باسم name وقيمته Mishalوفي السطر الثاني قمنا بمحاولة لتعديل الخانة الأولى للمتغير name إلى الحرف R، وعند طباعة المتغير name ستكون النتيجة `Mishal`
 
 نلاحظ أن قيمة الخانة رقم 0 للمتغير name لم تتغير إلىR بل بقيت كما هي على قيمتها الأساسية، أي M.
+
+ملاحظة: النصوص strings في JavaScript غير قابلة للتعديل immutable، وفي الوضع العادي يتم تجاهل محاولة التعديل بصمت كما رأينا، أما في strict mode (عند استخدام `'use strict'` أو داخل modules) فإن هذه المحاولة ترمي خطأ من نوع `TypeError`.
+
 تعرفنا في هذا الدرس على كيفية الوصول إلى عنصر معين داخل النص وتنفيذ عمليات مُختلفة عليه مثل الطباعة، كما تعلمنا أن Bracket notation خاصة بالقراءة ولا تقوم بتحديث العناصر أو تغييرها.
 
 ### مقدمة في دمج النصوص String Concatenation
@@ -269,10 +273,10 @@ console.log('The \\ character is called backslash.');
 
 ```
 let result = 2 + 5; //7
-let result = 4 - 10; //-6
-let result = 2 * 2; //4
-let result = 2 / 6; //0.3333333333333333
-let result = 10 % 3; //1
+result = 4 - 10; //-6
+result = 2 * 2; //4
+result = 2 / 6; //0.3333333333333333
+result = 10 % 3; //1
 ```
 
 ## معاملات المقارنة Comparison Operators
@@ -338,7 +342,7 @@ console.log(result); //true
 ```
 let number = 5;
 number = number + 1; //6
-number = number - 1; //4
+number = number - 1; //5
 ```
 
 ```
@@ -415,7 +419,7 @@ console.log(!isStudent); //false
 ```
 let first = true, second = false;
 let andResult = first && second; // false
-let orResult = first || seocnd;  // true
+let orResult = first || second;  // true
 let notResult = !first // false
 console.log(andResult);
 console.log(orResult);
@@ -451,7 +455,7 @@ console.log(colors[0]); //red
 ### تحديث قيم المصفوفة
 
 ```
-t colors = ['red', 'green', 'blue'];
+let colors = ['red', 'green', 'blue'];
 console.log(colors[1]) //green
 colors[1] = 'black';
 console.log(colors[1]) //black
@@ -523,7 +527,9 @@ console.log(Array.isArray(color)) //false
 console.log(Array.isArray(colors)) //true
 ```
 
-### المصفوفة ثنائية الأبعاد | 2D Array
+### مصفوفة داخل مصفوفة | Nested Array
+
+يمكن أن تحتوي المصفوفة على أنواع مختلطة من القيم، ومن بينها مصفوفة أخرى متداخلة nested. في المثال التالي لدينا مصفوفة مختلطة عنصرها الأول مصفوفة متداخلة:
 
 ```
 const values = [[1,2,3], true, 'javascript']
@@ -540,7 +546,7 @@ console.log(values[0][2]) //3
 
 ```
 let message = 'welcome to javascript course'
-console.log(message.split(' ')) تقسيم على حسب "space"
+console.log(message.split(' ')) // تقسيم على حسب "space"
 //[ 'welcome', 'to', 'javascript', 'course' ]
 ```
 
@@ -548,7 +554,7 @@ console.log(message.split(' ')) تقسيم على حسب "space"
 
 ```
 let message = [ 'welcome', 'to', 'javascript', 'course' ]
-console.log(message.join(' ')) هنا أجمعهم و أضيف مسافة بينهم
+console.log(message.join(' ')) // هنا أجمعهم و أضيف مسافة بينهم
 //welcome to javascript course
 ```
 
@@ -785,11 +791,12 @@ salam()
 يمكن استدعاء الدالة عدة مرات
 
 ```javascript
-function salam():
-	print("السلام عليكم")
+function salam() {
+	console.log("السلام عليكم");
+}
 
-func_name()
-func_name()
+salam();
+salam();
 ```
 
 ### مدخل الدالة parameter

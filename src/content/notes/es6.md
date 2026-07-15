@@ -3,7 +3,7 @@ title: "أساسيات ES6"
 domain: "أساسيات"
 tags: ["javascript", "es6"]
 created: "2022-10-31"
-updated: "2024-05-28"
+updated: "2026-07-15"
 heroImage: "https://raw.githubusercontent.com/detain/svg-logos/master/svg/e/es6.svg"
 outdated: false
 stage: "budding"
@@ -46,7 +46,7 @@ console.log(test());
 
 ```
 let test = () => 2;
-let test = _ => 2;
+test = _ => 2; // إعادة إسناد لنفس المتغير
 console.log(test());
 ```
 
@@ -63,7 +63,7 @@ console.log(test(5));
 
 ```
 let test = (param) => param * 2;
-let test = param => param * 2;
+test = param => param * 2; // إعادة إسناد لنفس المتغير
 console.log(test(5));
 ```
 
@@ -78,7 +78,7 @@ console.log(test(5, 5));
 
 ## شرح Call Stack, Web API, Event Loop, Callback Queue
 
-لدينا شيء اسمه call Stack و هو من يحدد اي سطر يشتغل اولا ... يعني هو من يرتب execution فإذا و جد Web API دفعه الى Callback Queue للإنتظار
+لدينا شيء اسمه Call Stack و هو المكان الذي تنفذ فيه الجافاسكريبت الكود سطرا بسطر. العمليات غير المتزامنة مثل `setTimeout` و `fetch` لا ينفذها ال Call Stack بنفسه، بل يتكفل بها المتصفح عن طريق Web APIs، و عندما تنتهي العملية توضع ال callback الخاصة بها في ال Callback Queue للإنتظار، ثم يأتي دور ال Event Loop الذي ينقل تلك ال callback من ال Callback Queue الى ال Call Stack فقط عندما يكون ال Call Stack فارغا
 
 ## شرح asynchronous و synchronous
 
@@ -86,7 +86,7 @@ console.log(test(5, 5));
 
 معنى synchronous programming هو ان اي شيئ تكتبه يجب ان ينتهي حتى يعمل الذي بعده
 
-اما في asynchronous programming فيمكن فعل عدة اشياء في نفس الوقت
+اما في asynchronous programming فلا يعني ذلك ان الجافاسكريبت تنفذ عدة اشياء بالتوازي (فهي تبقى single threaded) و انما يعني ان العمليات الطويلة مثل ال timers و ال I/O يتم تفويضها الى المتصفح، و تعمل ال callbacks الخاصة بها لاحقا دون ان توقف block باقي الكود
 
 ## شرح Promise
 
@@ -96,7 +96,7 @@ console.log(test(5, 5));
 
 ثانيا promise عبارة عن object
 
-ثالثا promise عملية غير متزامنة asynchronous يعني انه يمكن ان تتم في نفس وقت عملية اخرى
+ثالثا promise عملية غير متزامنة asynchronous يعني ان العملية يتم تفويضها و لا توقف block باقي الكود، و عند اكتمالها تعمل ال callback الخاصة بها لاحقا
 
 ### كتابة promise
 

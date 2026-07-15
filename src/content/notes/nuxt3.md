@@ -5,7 +5,8 @@ tags: ["vue", "nuxt"]
 created: "2022-10-31"
 updated: "2024-05-28"
 heroImage: "https://raw.githubusercontent.com/bestofjs/bestofjs/master/apps/bestofjs-nextjs/public/logos/nuxt2.svg"
-outdated: false
+outdated: true
+outdatedReason: "مكتوبة أيام إصدار Nuxt 3 التجريبي (RC) — إعدادات مثل target و router.base تغيّرت في الإصدار المستقر، و @nuxt/content v3 غيّر طريقة العمل بالكامل"
 stage: "budding"
 ---
 
@@ -158,7 +159,7 @@ export default defineNuxtConfig({
 # الصفحة الرئيسية
 ```
 
-الآن ننشئ **[slug.vue]** في pages
+الآن ننشئ **[slug].vue** في pages
 
 ```
 <template>

@@ -5,7 +5,8 @@ tags: ["vue", "nuxt", "icons"]
 created: "2022-10-31"
 updated: "2024-05-28"
 heroImage: "https://raw.githubusercontent.com/simple-icons/simple-icons/master/icons/iconify.svg"
-outdated: false
+outdated: true
+outdatedReason: "حزمة nuxt-icon القديمة أصبحت مهجورة — استُبدلت بـ @nuxt/icon مع بقاء طريقة الاستعمال نفسها"
 stage: "budding"
 ---
 

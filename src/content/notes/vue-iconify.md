@@ -3,7 +3,7 @@ title: "إستعمال iconify في vue"
 domain: "أُطر ومكتبات"
 tags: ["vue", "icons"]
 created: "2022-10-31"
-updated: "2024-05-28"
+updated: "2026-07-15"
 heroImage: "https://raw.githubusercontent.com/simple-icons/simple-icons/master/icons/iconify.svg"
 outdated: false
 stage: "budding"
@@ -53,10 +53,10 @@ yarn add unplugin-icons
 yarn add @iconify-json/mdi
 ```
 
-او يمكننا تثبيب كل شيء و لكن حجمها كبير 120mb
+او يمكننا تثبيت المجموعة الكاملة من الأيقونات و لكن حجمها كبير (حوالي 120mb)
 
 ```
-yarn add @iconify-json
+yarn add -D @iconify/json
 ```
 
 بعد ذلك نظيف الايقونات هكذا

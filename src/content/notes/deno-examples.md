@@ -5,7 +5,8 @@ tags: ["deno", "javascript"]
 created: "2023-04-29"
 updated: "2024-05-28"
 heroImage: "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_denoify.svg"
-outdated: false
+outdated: true
+outdatedReason: "بعض الأوامر تخص ما قبل Deno 2 — علم --unstable أُزيل، و serve من std/http استُبدل بـ Deno.serve المدمج"
 stage: "budding"
 ---
 

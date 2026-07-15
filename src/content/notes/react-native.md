@@ -5,7 +5,8 @@ tags: ["react", "mobile"]
 created: "2022-10-31"
 updated: "2024-05-28"
 heroImage: "https://reactnative.dev/img/header_logo.svg"
-outdated: false
+outdated: true
+outdatedReason: "أداة expo-cli العالمية و حزمة tailwindcss-react-native أصبحتا مهجورتين — البديل npx expo و NativeWind"
 stage: "budding"
 ---
 
@@ -66,6 +67,7 @@ import { TailwindProvider } from 'tailwindcss-react-native';
 ### استعمال React Navigation
 
 ```
+yarn add @react-navigation/native
 expo install react-native-screens react-native-safe-area-context
 ```
 

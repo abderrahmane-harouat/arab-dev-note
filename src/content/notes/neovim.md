@@ -3,7 +3,7 @@ title: "تعديلات neovim"
 domain: "أدوات"
 tags: ["neovim", "editor"]
 created: "2022-10-31"
-updated: "2024-05-28"
+updated: "2026-07-15"
 heroImage: "https://raw.githubusercontent.com/keeferrourke/la-capitaine-icon-theme/master/apps/scalable/vim.svg"
 outdated: false
 stage: "budding"
@@ -80,7 +80,5 @@ inoremap { {}<left>
 :PlugInstall
 ```
 
-```
-:LspInstall tailwindcss
-```
+و بما أن coc-tailwindcss3 مثبت مسبقا عبر vim-plug في الإعدادات أعلاه، فلا حاجة لأي أمر تثبيت إضافي بعد `:PlugInstall`
 

@@ -3,7 +3,7 @@ title: "أساسيات Typescript"
 domain: "أساسيات"
 tags: ["typescript", "javascript"]
 created: "2023-04-29"
-updated: "2024-05-28"
+updated: "2026-07-15"
 heroImage: "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_typescript.svg"
 outdated: false
 stage: "budding"
@@ -87,7 +87,7 @@ let hire: boolean = true;
 let myArray: string[] = ["omar", "said", "mostafa", "kamal"]
 let mySecondArray: number[] = [5, 6, 7, 88, 6]
 
-// unknown typw
+// any type
 let all: any = 55.5;
 ```
 
@@ -110,7 +110,7 @@ let myArrayMulti: (string|boolean)[] = ["omar", "said", "mostafa", "kamal",true,
 **اذا كان لدينا array داخل array**
 
 ```
-let myArrayInArray: (string | number | string[] | boolean[]) = ['ahmad',5,['said'],[true,false]];
+let myArrayInArray: (string | number | string[] | boolean[])[] = ['ahmad',5,['said'],[true,false]];
 ```
 
 ## الدوال
@@ -355,9 +355,15 @@ console.log(published) //false
 إستخدام void يعني أننا لن نرجع أي قيمة
 
 ```
-function logging(msg: string): void{
+// نسخة خاطئة : إرجاع قيمة مع void يسبب error
+function loggingWrong(msg: string): void{
 	console.log(msg)
 	return msg; //error
+}
+
+// نسخة صحيحة : return فارغة مقبولة مع void
+function logging(msg: string): void{
+	console.log(msg)
 	return; //correct
 }
 

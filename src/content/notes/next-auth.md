@@ -3,7 +3,7 @@ title: "إستعمال Next Auth"
 domain: "أُطر ومكتبات"
 tags: ["react", "nextjs", "auth"]
 created: "2022-10-31"
-updated: "2024-05-28"
+updated: "2026-07-15"
 heroImage: "https://next-auth.js.org/img/logo/logo-sm.png"
 outdated: false
 stage: "budding"
@@ -25,7 +25,7 @@ yarn add next-auth
 
 سمي التطبيق اي اسم تريد في `Application name`
 سنضع http://localhost:3000 في `Homepage URL` ثم نغيره الى اسم الموقع الخاص بنا فيما بعد
-ثم نضع http://localhost:3000/api/auth/callback في `Authorization callback URL` ثم نغيره الى اسم الموقع الخاص بنا فيما بعد
+ثم نضع http://localhost:3000/api/auth/callback/github في `Authorization callback URL` ثم نغيره الى اسم الموقع الخاص بنا فيما بعد
 ثم نضغط `Register application`
 
 سنحصل من هناك على GITHUB_ID و GITHUB_SECRET فنحتفظ بهما
@@ -34,6 +34,8 @@ yarn add next-auth
 
 ```
 NEXTAUTH_URL=http://localhost:3000
+# مطلوب في production و يمكن توليده بالأمر: openssl rand -base64 32
+NEXTAUTH_SECRET=
 GITHUB_ID=088660c680b60fb512ae
 GITHUB_SECRET=c42b30b3f51048d3e79899a42d65e25f9e2e9fe8f
 ```
@@ -53,7 +55,7 @@ const options = {
     ],
 }
 
-rest apiexport default (req, res) => NextAuth(req, res, options)
+export default (req, res) => NextAuth(req, res, options)
 ```
 
 نضيف `SessionProvider` في `pages/_app.js`

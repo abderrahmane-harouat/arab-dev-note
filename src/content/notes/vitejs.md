@@ -5,7 +5,8 @@ tags: ["vite", "bundler"]
 created: "2022-10-31"
 updated: "2024-05-28"
 heroImage: "https://raw.githubusercontent.com/bestofjs/bestofjs/master/apps/bestofjs-nextjs/public/logos/vite.svg"
-outdated: false
+outdated: true
+outdatedReason: "خطوات إعداد Tailwind تخص v3 — الأمر tailwindcss init و توجيهات @tailwind أُزيلت في Tailwind v4"
 stage: "budding"
 ---
 

@@ -3,7 +3,7 @@ title: "أساسيات Dart"
 domain: "أساسيات"
 tags: ["dart", "flutter"]
 created: "2023-04-29"
-updated: "2024-05-28"
+updated: "2026-07-15"
 heroImage: "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_dartlang.svg"
 outdated: false
 stage: "budding"
@@ -97,7 +97,7 @@ const weekDays = 7;
 
 ```
 // This is a comment.
-va age = 25; // This is my age.
+var age = 25; // This is my age.
 ```
 
 تعليق متعدد الأسطر Multi-line Comments
@@ -161,6 +161,13 @@ var message = 'Welcome to Dart';
 var message = "Welcome to Dart";
 ```
 
+استخدام علامات التنصيص الثلاثية Triple Quote سواء `'''...'''` أو `"""..."""` لكتابة نص متعدد الأسطر.
+
+```
+var message = '''Welcome
+to Dart''';
+```
+
 ### طريقة دمج النصوص باستخدام علامة “+”
 
 ```
@@ -179,13 +186,13 @@ var message = "the value of num is $num";
 
 ### النصوص ومفهوم Escape Character
 
-تستخدم هذهِ العمليات داخل النص String وكل واحدة منها تقوم بعملية محددة فعلى سبيل المثال n\ يجعل ما بعده على سطر جديد،
+تستخدم هذهِ العمليات داخل النص String وكل واحدة منها تقوم بعملية محددة فعلى سبيل المثال `\n` يجعل ما بعده على سطر جديد،
 
 ```
-Horizontal Tab t\ يضيف عدد من المسافات في مكان وضعه
-Newline n\ يقوم بجعل ما بعده على سطر جديد
-Single quote '\ تقوم بإضافة ' مكان وضعها
-Double quote "\ تقوم بإضافة " مكان وضعها
+Horizontal Tab \t يضيف عدد من المسافات في مكان وضعه
+Newline \n يقوم بجعل ما بعده على سطر جديد
+Single quote \' تقوم بإضافة ' مكان وضعها
+Double quote \" تقوم بإضافة " مكان وضعها
 Backslash \\ تقوم بإضافة \ مكان وضعها
 ```
 
@@ -213,7 +220,7 @@ var value = true;
 
 ### تعريف التغيرات بنوع المتغير
 
-تحتوي لغة Dart على ميزة safe type، أي أنها تمتلك ميزة الأمان عند تعريف المتغيرات، نلاحظ المثال التالي:
+تحتوي لغة Dart على ميزة type safety (أي أنها لغة type safe)، بمعنى أنها تمتلك ميزة الأمان عند تعريف المتغيرات، نلاحظ المثال التالي:
 
 ```
 int intValue = 2;
@@ -335,7 +342,7 @@ Not !
 var first = true, second = false;
 var andResult = first && second; // false
 var orResult = first || second;  // true
-var notResult = !first // false
+var notResult = !first; // false
 ```
 
 ### نظرة على Increment و Decrement
@@ -646,7 +653,7 @@ void main(){
 
 ### مفهوم Arrow Function
 
-هي طريقة مختصرة لكتابة الدوال في Dart، بحيث تُعرف الدالة دون استخدام الأقواس{}، وتكتب parameters أولًا ويفصلها عن محتوى الدالة سهم <=. لاحظ الدالة في المثال التالي:
+هي طريقة مختصرة لكتابة الدوال في Dart، بحيث تُعرف الدالة دون استخدام الأقواس{}، وتكتب parameters أولًا ويفصلها عن محتوى الدالة سهم `=>`. لاحظ الدالة في المثال التالي:
 
 ```
 int sum(one, two) => one + two;

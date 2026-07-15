@@ -5,7 +5,8 @@ tags: ["design", "ux"]
 created: "2022-10-31"
 updated: "2024-05-28"
 heroImage: "https://raw.githubusercontent.com/vinceliuice/Fluent-icon-theme/master/src/scalable/apps/colorgrab.svg"
-outdated: false
+outdated: true
+outdatedReason: "إعداد mode: 'jit' لم يعد له وجود — أصبح JIT هو المحرك الافتراضي منذ Tailwind v3"
 stage: "budding"
 ---
 

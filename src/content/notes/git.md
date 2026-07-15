@@ -3,7 +3,7 @@ title: "ما هو git و أهم استعمالاته"
 domain: "أدوات"
 tags: ["git"]
 created: "2022-10-31"
-updated: "2026-07-14"
+updated: "2026-07-15"
 heroImage: "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_git2.svg"
 outdated: false
 stage: "evergreen"
@@ -19,7 +19,7 @@ git هو برنامج يسجّل تاريخ التعديلات التي تحدث
 
 مثال بسيط — تحويل مجلد عادي إلى repo :
 
-```
+```bash
 mkdir myproject
 cd myproject
 git init          # أصبح هذا المجلد الآن git repository
@@ -33,7 +33,7 @@ git commit -m "first commit"   # حفظ snapshot من العمل
 
 - للإطلاع على حالة المشروع : يعني ما هي الملفات التي تم تعديلها و ما الى ذلك
 
-```
+```bash
 git status
 ```
 
@@ -41,40 +41,40 @@ git status
 
 - لإضافة الملفات إلى staging area
 
-```
+```bash
 git add index.html
-// or
+# or
 git add .
 git add *
 ```
 
 - لحذف الملفات من staging area
 
-```
+```bash
 git reset index.html
-// or
-git reset // all files
+# or
+git reset  # all files
 ```
 
-النقطة او النجمة تعنيان إضافة كل الملفات و المجلدات
+النقطة `.` تضيف كل شيء بما في ذلك الملفات المخفية (dotfiles) و الملفات المحذوفة. أما النجمة `*` فهي shell glob لا تشمل الملفات المخفية و قد تعطي خطأ مع الملفات المحذوفة
 
 ## التعامل مع remote repo
 
 - لمعرفة remote repo
 
-```
+```bash
 git remote -v
 ```
 
 - لتحميل الملفات من remote repo ل local repo
 
-```
+```bash
 git pull origin
 ```
 
 ## عرض و حذف commits
 
-```
+```bash
 # Show Log File (commits)
 git log
 
@@ -85,66 +85,69 @@ git reset --hard "Commit Hash Here"
 git push origin main --force
 ```
 
-## التعامل مع الفرع branch
+## الفرع branch
 
+
+### شرح الـ Branch
+
+الـ **Branch** (الفرع) هو نسخة مستقلة من مشروعك. تخيل أن مشروعك الرئيسي هو "main"، وكل فرع يخرج منه هو طريق منفصل تعمل فيه على ميزات (Features) جديدة أو إصلاحات (Fixes) من دون أن تأثر على الكود الأساسي.
+
+### ليش نستخدم الـ Branch؟
+
+- **عزل العمل (Isolation):** العمل على ميزة جديدة بدون تعطيل باقي عمل الفريق.
+- **التجربة (Experimentation):** تجربة أفكار جديدة، وإذا لم تعجبك، ببساطة تحذف الفرع.
+- **التعاون (Collaboration):** كل شخص في الفريق يعمل على فرع خاص به على سبيل المثال، و بعدها ندمج (Merge) الفروع مع بعضها البعض.
+  
 ### عرض الفرع Show Branches
 
-```
+```bash
 git branch
 ```
 
-### تغيير الفرع Switch To Branch
+### التغيير إلى فرع آخر Switch To Branch
 
-```
-git checkout "Branch Name"
+```bash
+git checkout "Other branch" # الإنتقال إلى فرع موجود بالفعل
+
+git checkout -b "Branch Name" # الإنتقال إلى فرع لم يتم إنشاءه بعد
 ```
 
 ### حذف الفرع Delete Branch
 
-```
+```bash
 git branch -d "Branch Name"
 ```
 
-هنا لن يحذف branch اذا كانت بالملفات تعديلات , هنا نحذف الملف بقوة عن طريق -D
 
-### إنشاء الفرع و الإنتقال اليه Create Branch And Switch To It
-
-```
-git checkout -b "Branch Name"
-```
+هنا `git branch -d` يرفض حذف branch اذا كان يحتوي على commits لم يتم دمجها (merge) في الفرع الحالي , و يمكن حذفه بالقوة عن طريق `-D` مع العلم أن هذه الـ commits ستضيع
 
 ### تغيير اسم الفرع Move / Rename Branch
 
-```
+```bash
 git branch -m "New Branch Name"
 ```
 
+
 ### دمج الفرع مع الفرع الحالي Merge Branch With Current Branch
 
-```
+```bash
 git merge "Branch Name You Need To Merge"
 ```
 
-## استعمال clean و restore
+## الدُرج stash
 
-```
-# Restore Staged Files / Unstage
-git restore --staged "File Name Here"
+الـ **Stash** هو مكان مؤقت تضع فيه تغييراتك التي لم تقم بعمل **Commit** (حفظ رسمي) لها، حتى نتظم مشروعك و تفعل شيئا آخر، ثم تعود إليها لاحقاً كأنك "خبأتها في درج".
 
-# Show Files That Will Be removed
-git clean -n
+### لماذا نستعمل الـ Stash أصلا؟
 
-# Remove Files that are not in Staging Area
-git clean -f
-```
+- **تغيير الفرع فجأة:** إذا كنت تعمل على فرع، و تريد الإنتقال إلى فرع آخر، و لا تستطيع القيام بـ Commit لأن عملك ناقص.
+- **سحب تحديثات (Pull):** إذا كان هناك تحديثات من الفريق و تريد سحبها، لكن التغييرات تتعارض مع ما قمت بتغييره.
 
-## التعامل مع stash
+**ملاحظة** : لا يمكن استعمال stash الا بعد commit واحد على الأقل. الملفات المتتبَّعة (tracked) التي عدّلتها تُخبَّأ مباشرة دون الحاجة إلى staging، أما الملفات الجديدة غير المتتبَّعة (untracked) فتحتاج إلى `git add` أولا أو استعمال `git stash -u`
 
-عن طريق stash يمكن حفظ الملفات التي لا نريد دفعها حاليا على سبيل المثال
+### أمثلة على الأوامر (Commands):
 
-**ملاحظة** : لا يمكن استعمال stash الا بعد commit واحد على الأقل و نظيف إلى ال stash بعد دفع الملف إلى staging area
-
-```
+```bash
 # Create Text File With "Hello World" String Inside It
 echo "Hello World" > about_readme.txt
 
@@ -155,7 +158,7 @@ git add about_readme.txt
 git stash
 
 # Save Work To Stash With Description
-git stash save "Description Here"
+git stash push -m "Description Here"
 
 # List Items in Stash
 git stash list
@@ -176,9 +179,47 @@ git stash show
 git stash clear
 ```
 
+### مثال عملي:
+
+1. كنت تعمل على فرع `feature-A` وعدّلت في 3 ملفات.
+2. فجأة طلب منك مديرك الإنتقال إلى فرع `hotfix-B` لإصلاح مشكلة عاجلة.
+3. لا تستطيع عمل Commit لأن الشغل ناقص، و قد يمنعك Git من الإنتقال إذا كانت تغييراتك ستُستبدل (overwritten) بملفات الفرع الآخر.
+4. **الحل:** تكتب `git stash`، هكذا Git وضع تغييراتك في الدرج  `stash`  ونظف ملفاتك.
+5. تنتقل لـ `hotfix-B`، تصلح الأخطاء، وتعمل Commit.
+6. ترجع لـ `feature-A` وتكتب `git stash pop`، هكذا Git يرجع تغييراتك من الدرج ويضعها في ملفاتك مرة ثانية.
+  
+## 🔄 الفرق الجوهري بين الـ Branch و Stash:
+
+|المفهوم|الغرض|الحالة|
+|---|---|---|
+|**Branch**|خط تطوير طويل الأمد للمشروع|يحفظ تاريخ كامل من الـ Commits|
+|**Stash**|حفظ مؤقت للتغييرات غير المكتملة|مؤقت جداً، فقط للتغييرات التي لم تُحفظ (Uncommitted)|
+
+**باختصار:**
+
+- **Branch** = طريق جديد تشتغل فيه. 🛣️
+- **Stash** = درج مؤقت تحط فيه شغلك لما تحتاج تنظف المكتب بسرعة. 🗄️
+
+
+## استعمال clean و restore
+
+```bash
+# Restore Staged Files / Unstage
+git restore --staged "File Name Here"
+
+# Show Files That Will Be removed
+git clean -n
+
+# Remove Untracked Files (Files Git Doesn't Track)
+git clean -f
+
+# Add -d To Also Remove Untracked Directories
+git clean -fd
+```
+
 ## التعامل مع tags
 
-```
+```bash
 # Show All Tags
 git tag
 
@@ -207,31 +248,31 @@ git push origin --delete "Version Name Or Tag Name Here"
 
 - عرض التعديلات
 
-```
+```bash
 git config -l
-// or
+# or
 git config --list
 ```
 
 - عرض الايميل و اسم المستخدم
 
-```
+```bash
 git config --global user.name
 git config --global user.email
 ```
 
 - اعطاءهم قيمة
 
-```
+```bash
 git config --global user.name "abdurahman-ghazi"
 git config --global user.email "abdurahman-ghazi@email.com"
 ```
 
 - حذف القيمة منهم
 
-```
+```bash
 git config --global user.name ""
-// or
+# or
 git config --global --unset user.name
 ```
 
@@ -241,13 +282,13 @@ git config --global --unset user.name
 
 ننشئ مستودع و نسميه هكذا باستعمال username
 
-```
+```bash
 abdurahman-ghazi.github.io
 ```
 
 ## لدفع البرنامج الى github
 
-```
+```bash
 git add .
 git commit -m "اضافة localStorage"
 git push -u origin main
@@ -255,7 +296,7 @@ git push -u origin main
 
 ثم ندخل الاسم و التوكن الذي يعتبر password
 
-```
+```bash
 username: abdurahman-ghazi
 password: xyz
 ```
@@ -264,13 +305,13 @@ password: xyz
 
 أولا تثبيب gh-pages
 
-```
+```bash
 yarn add gh-pages -D
 ```
 
 ثم نظيف deploy الى scripts
 
-```
+```json
 "scripts": {
   "deploy": "npm run build && gh-pages -d dist"
 }
@@ -278,7 +319,7 @@ yarn add gh-pages -D
 
 و أخيرا
 
-```
+```bash
 yarn deploy
 ```
 
@@ -286,7 +327,7 @@ yarn deploy
 
 نحتاج هذه الطريقة لتفادي كتابة username و password(token) في كل مرة
 
-```
+```bash
 ssh-keygen -t rsa -b 4096 -C "abdurahman-ghazi@email.com"
 ```
 
@@ -294,7 +335,7 @@ ssh-keygen -t rsa -b 4096 -C "abdurahman-ghazi@email.com"
 
 نقوم بطباعة key هكذا
 
-```
+```bash
 cat /home/ghazi/.ssh/id_rsa.pub
 ```
 
@@ -306,7 +347,7 @@ cat /home/ghazi/.ssh/id_rsa.pub
 
 الآن لتجربة الاتصال
 
-```
+```bash
 ssh -T git@github.com
 ```
 
@@ -314,30 +355,30 @@ ssh -T git@github.com
 
 مثال :
 
-```
+```bash
 git@github.com:abdurahman-ghazi/markdown-arabic-vue.git
 ```
 
 و ليس
 
-```
+```bash
 https://github.com/abdurahman-ghazi/markdown-arabic-vue.git
 ```
 
 طبعا لمعرفة origin
 
-```
+```bash
 git remote show origin
 ```
 
 لحذف origin
 
-```
+```bash
 git remote remove origin
 ```
 
 لإضافة origin
 
-```
+```bash
 git remote add origin git@github.com:abdurahman-ghazi/markdown-arabic-vue.git
 ```

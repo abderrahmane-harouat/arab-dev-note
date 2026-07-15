@@ -3,7 +3,7 @@ title: "إستعمال Prettier"
 domain: "أدوات"
 tags: ["prettier", "formatting"]
 created: "2022-10-31"
-updated: "2024-05-28"
+updated: "2026-07-15"
 heroImage: "https://raw.githubusercontent.com/uiwjs/file-icons/master/icon/prettier.svg"
 outdated: false
 stage: "budding"
@@ -24,14 +24,15 @@ yarn add prettier -D
 
 ```json
 "scripts": {
-    "format": "prettier --write '**/*.{vue,html,.md}'"
+    "format": "prettier --write '**/*.{vue,html,md}'"
   },
 ```
 
-بعد ذلك نقوم باضافة ملف .prettierignore  حتى نقصي مجلد node_modules فنحن لا نريد عمل فورمات format لكل الملفات
+**ملاحظة** : Prettier يتجاهل مجلد node_modules تلقائيا منذ الإصدار v2، فلا حاجة لإضافته يدويا. ملف .prettierignore نحتاجه فقط إذا أردنا إقصاء ملفات او مجلدات أخرى من الـ format
 
 ```
-node_modules
+dist
+coverage
 ```
 
 نستطيع ايضا ان نضع قوانين ك اضافة semicolon على سبيل المثال و ذلك بانشاء ملف .prettierrc
