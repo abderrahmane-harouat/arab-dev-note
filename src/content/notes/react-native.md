@@ -7,6 +7,7 @@ updated: "2024-05-28"
 heroImage: "https://reactnative.dev/img/header_logo.svg"
 outdated: true
 outdatedReason: "أداة expo-cli العالمية و حزمة tailwindcss-react-native أصبحتا مهجورتين — البديل npx expo و NativeWind"
+trashed: true
 stage: "budding"
 ---
 
