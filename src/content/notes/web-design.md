@@ -6,6 +6,7 @@ created: "2022-10-31"
 updated: "2024-05-28"
 heroImage: "https://raw.githubusercontent.com/vinceliuice/Fluent-icon-theme/master/src/scalable/apps/colorgrab.svg"
 outdated: false
+trashed: true
 stage: "budding"
 ---
 

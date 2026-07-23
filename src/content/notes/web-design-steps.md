@@ -7,6 +7,7 @@ updated: "2024-05-28"
 heroImage: "https://raw.githubusercontent.com/vinceliuice/Fluent-icon-theme/master/src/scalable/apps/colorgrab.svg"
 outdated: true
 outdatedReason: "إعداد mode: 'jit' لم يعد له وجود — أصبح JIT هو المحرك الافتراضي منذ Tailwind v3"
+trashed: true
 stage: "budding"
 ---
 

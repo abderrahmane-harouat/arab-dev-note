@@ -5,7 +5,7 @@ import NoteCard from '../components/NoteCard.astro';
 import Footer from '../components/Footer.astro';
 import { getCollection } from 'astro:content';
 
-const allNotes = await getCollection('notes');
+const allNotes = await getCollection('notes', ({ data }) => !data.trashed);
 
 const domainOrder = ['أساسيات', 'أُطر ومكتبات', 'أدوات', 'تصميم', 'الأمن السيبراني'];
 

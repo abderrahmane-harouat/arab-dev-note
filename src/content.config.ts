@@ -11,6 +11,7 @@ const notes = defineCollection({
     updated: z.string(),
     heroImage: z.string().optional(),
     outdated: z.boolean().default(false),
+    trashed: z.boolean().default(false),
     outdatedReason: z.string().optional(),
     outdatedAlternative: z.string().optional(),
     stage: z.enum(['seedling', 'budding', 'evergreen']).default('budding'),
