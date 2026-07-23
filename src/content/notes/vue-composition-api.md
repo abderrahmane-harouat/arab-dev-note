@@ -7,6 +7,7 @@ updated: "2024-05-28"
 heroImage: "https://raw.githubusercontent.com/devicons/devicon/master/icons/vuejs/vuejs-original.svg"
 outdated: true
 outdatedReason: "تعتمد على Vue CLI (في وضع الصيانة) و Reactivity Transform الذي أُزيل في Vue 3.4، و خطوات Tailwind تخص v3"
+trashed: true
 stage: "budding"
 ---
 
