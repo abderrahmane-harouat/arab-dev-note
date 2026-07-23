@@ -4,7 +4,7 @@ domain: "أُطر ومكتبات"
 tags: ["react", "nextjs"]
 created: "2022-10-31"
 updated: "2024-05-28"
-heroImage: "https://raw.githubusercontent.com/bestofjs/bestofjs/master/apps/bestofjs-nextjs/public/logos/nextjs.dark.svg"
+heroImage: "https://raw.githubusercontent.com/devicons/devicon/master/icons/nextjs/nextjs-original.svg"
 outdated: true
 outdatedReason: "مكتوبة لـ Next.js 12 (pages router) — خصائص next/image القديمة مثل layout أُزيلت في v13، و contentlayer لم تعد مصانة"
 stage: "budding"
